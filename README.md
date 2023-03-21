@@ -1,5 +1,5 @@
 # SurvivorRL (WIP)
-A test implementation of reinforcement learning in Godot 4 for a custom mande survivor game.
+A test implementation of reinforcement learning in Godot 4 for a custom made survivor game.
 
 
 To run training from a binary (exported) game:
