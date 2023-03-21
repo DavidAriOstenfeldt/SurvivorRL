@@ -7,8 +7,12 @@ const DIFFICULTY_INTERVAL = 5
 @export var end_screen_scene: PackedScene
 
 @onready var timer = $Timer
+@onready var main = get_parent()
 
 var arena_difficulty = 0
+
+# AI
+@onready var time_to_win = timer.wait_time
 
 
 func _ready():
@@ -25,11 +29,15 @@ func _process(delta):
 
 func get_time_elapsed():
 	return timer.wait_time - timer.time_left
-	
 
+
+func reset():
+	arena_difficulty = 0
+
+	
+# Change this as well
 func on_timer_timeout():
-	var end_screen_instance = end_screen_scene.instantiate()
-	add_child(end_screen_instance)
-	end_screen_instance.play_jingle()
+	main.player.ai_controller.reward += 50
+	main.reset()
 	MetaProgression.save_data["win_count"] += 1
 	MetaProgression.save()

@@ -20,7 +20,7 @@ exp_amount = 2
 streams = Array[AudioStream]([ExtResource("3_8wy51"), ExtResource("4_1rbly"), ExtResource("5_uismb"), ExtResource("6_wcaxs"), ExtResource("7_jh8n4")])
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

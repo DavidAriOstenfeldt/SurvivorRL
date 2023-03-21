@@ -1,3 +1,10 @@
+Camera2D
+RaycastSensor2D
+Node2D
+Sync
+Node
+AIController2D
+AIController3D
 Label
 Timer
 AnimationPlayer
@@ -5,9 +12,7 @@ VisibleOnScreenEnabler2D
 VisibleOnScreenNotifier2D
 VBoxContainer
 HBoxContainer
-Node
 RayCast2D
-Node2D
 CollisionShape2D
 Sprite2D
 CharacterBody2D
@@ -26,7 +31,3 @@ CanvasLayer
 HSlider
 AudioStreamPlayer
 AudioStreamPlayer2D
-Panel
-Area2D
-Camera2D
-TileMap

@@ -54,6 +54,14 @@ func get_spawn_position():
 		
 	return spawn_position
 
+func reset():
+	enemies_to_spawn = 1
+	timer.wait_time = base_spawn_time
+	enemy_table = WeightedTable.new()
+	enemy_table.add_item(basic_enemy_scene, 10)
+	
+
+
 func on_timer_timeout():
 	timer.start()
 	

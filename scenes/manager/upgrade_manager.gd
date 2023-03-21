@@ -3,8 +3,12 @@ extends Node
 @export var experience_manager: Node
 @export var upgrade_screen_scene: PackedScene
 
+signal selectable_upgrades_picked(chosen_upgrades)
+
 var current_upgrades = {}
 var upgrade_pool: WeightedTable = WeightedTable.new()
+
+var ai_controller
 
 # Abilities + ability upgrades
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
@@ -56,7 +60,9 @@ func _ready():
 	upgrade_pool.add_item(upgrade_player_pickup_area, 5)
 	
 	experience_manager.level_up.connect(on_level_up)
-
+	
+	# AI
+	ai_controller = %Player.get_node("AIController2D")
 
 func apply_upgrade(upgrade: AbilityUpgrade):
 	var has_upgrade = current_upgrades.has(upgrade.id)
@@ -117,11 +123,34 @@ func pick_upgrades():
 	
 	return chosen_upgrades
 
+func reset():
+	current_upgrades = {}
+	upgrade_pool = WeightedTable.new()
+	upgrade_pool.add_item(upgrade_axe, 8)
+	upgrade_pool.add_item(upgrade_anvil, 8)
+	upgrade_pool.add_item(upgrade_hammer, 8)
+	upgrade_pool.add_item(upgrade_spear, 8)
+	upgrade_pool.add_item(upgrade_stab, 8)
+	
+	upgrade_pool.add_item(upgrade_sword_rate, 8)
+	upgrade_pool.add_item(upgrade_sword_damage, 10)
+	
+	upgrade_pool.add_item(upgrade_player_speed, 5)
+	upgrade_pool.add_item(upgrade_player_pickup_area, 5)
+
+
 
 func on_level_up(current_level: int):
 	var upgrade_screen_instance = upgrade_screen_scene.instantiate()
+	upgrade_screen_instance.ai_controller = ai_controller
 	add_child(upgrade_screen_instance)
 	var chosen_upgrades = pick_upgrades()
+	
+	var upgrade_ids = []
+	for upgrade in chosen_upgrades:
+		upgrade_ids.append(upgrade.id)
+	selectable_upgrades_picked.emit(chosen_upgrades)
+	
 	upgrade_screen_instance.set_ability_upgrades(chosen_upgrades as Array[AbilityUpgrade])
 	upgrade_screen_instance.upgrade_selected.connect(on_upgrade_selected)
 

@@ -7,11 +7,22 @@ signal selected
 @onready var upgrade_icon = %UpgradeIcon
 
 var disabled = false
+var id
+
+var ai_controller
 
 
 func _ready():
 	gui_input.connect(on_gui_input)
 	mouse_entered.connect(on_mouse_entered)
+
+
+func _process(delta):
+	if disabled:
+		return
+	
+	if ai_controller.click_action == id:
+		select_card()
 
 
 func play_in(delay: float = 0):
@@ -54,6 +65,21 @@ func on_gui_input(event: InputEvent):
 		
 	if event.is_action_pressed("left_click"):
 		select_card()
+	
+	
+func _unhandled_key_input(event):
+	if disabled:
+		return
+	
+	if id == 0:
+		if event.is_action_pressed("select_first"):
+			select_card()
+	elif id == 1:
+		if event.is_action_pressed("select_second"):
+			select_card()
+	elif id == 2:
+		if event.is_action_pressed("select_third"):
+			select_card()
 
 func on_mouse_entered():
 	if disabled:

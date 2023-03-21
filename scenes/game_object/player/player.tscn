@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://dco4wvqkly563"]
+[gd_scene load_steps=21 format=3 uid="uid://dco4wvqkly563"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_51rux"]
 [ext_resource type="Texture2D" uid="uid://c5r01kykbnnhd" path="res://scenes/game_object/player/player.png" id="1_w7kc3"]
 [ext_resource type="PackedScene" uid="uid://b0xoghkyeg3fu" path="res://scenes/component/velocity_component.tscn" id="2_855tn"]
 [ext_resource type="PackedScene" uid="uid://cyi2uk4x0f8ff" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_gf0th"]
 [ext_resource type="PackedScene" uid="uid://rivt7p1rl50f" path="res://scenes/component/health_component.tscn" id="2_keg1j"]
+[ext_resource type="Script" path="res://scenes/game_object/player/controller.gd" id="2_xclso"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd" id="3_26652"]
 [ext_resource type="PackedScene" uid="uid://cccdggom8bvr4" path="res://scenes/component/random_stream_player_2d_component.tscn" id="5_lmrsp"]
 [ext_resource type="AudioStream" uid="uid://b85f05vi7j7x8" path="res://assets/audio/impactMining_000.ogg" id="6_n6xxj"]
 [ext_resource type="AudioStream" uid="uid://crgivjm0m66y6" path="res://assets/audio/impactMining_001.ogg" id="7_oslpi"]
@@ -119,6 +121,27 @@ radius = 5.0
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_51rux")
+
+[node name="AIController2D" type="Node2D" parent="." groups=["AGENT"]]
+process_mode = 3
+script = ExtResource("2_xclso")
+
+[node name="EnemySensor" type="Node2D" parent="."]
+script = ExtResource("3_26652")
+collision_mask = 12
+collide_with_areas = true
+
+[node name="PickupSensor" type="Node2D" parent="."]
+script = ExtResource("3_26652")
+collision_mask = 48
+collide_with_areas = true
+
+[node name="TerrainSensor" type="Node2D" parent="."]
+rotation = 0.785398
+scale = Vector2(1, 1)
+script = ExtResource("3_26652")
+n_rays = 4.0
+ray_length = 135
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

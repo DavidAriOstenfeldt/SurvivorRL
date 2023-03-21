@@ -34,4 +34,6 @@ func get_health_percent():
 func check_death():
 	if current_health == 0:
 		died.emit()
+		if owner is Player:
+			return
 		owner.queue_free()
