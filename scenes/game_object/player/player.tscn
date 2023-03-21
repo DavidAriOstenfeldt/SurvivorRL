@@ -138,7 +138,6 @@ collide_with_areas = true
 
 [node name="TerrainSensor" type="Node2D" parent="."]
 rotation = 0.785398
-scale = Vector2(1, 1)
 script = ExtResource("3_26652")
 n_rays = 4.0
 ray_length = 135

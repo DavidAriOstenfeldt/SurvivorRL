@@ -1,11 +1,12 @@
 extends Node2D
 
 @onready var label: Label = $Label
-
+@onready var ai_controller = get_tree().get_first_node_in_group("entities_layer").get_child(0).ai_controller
 
 func _ready():
 	tree_exiting.connect(on_tree_exiting)
-
+	# ai_controller.reward += 1
+	
 func start(text: String):
 	label.text = text
 	

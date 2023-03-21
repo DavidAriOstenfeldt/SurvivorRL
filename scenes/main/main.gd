@@ -29,7 +29,7 @@ func _unhandled_input(event):
 
 # TODO CHANGE THIS
 func on_player_died():
-	player.ai_controller.reward -= 50.0
+	player.ai_controller.reward -= 100.0
 	reset()
 	MetaProgression.save()
 

@@ -139,7 +139,7 @@ func on_damage_interval_timer_timeout():
 
 
 func on_health_decreased():
-	ai_controller.reward -= 5.0
+	ai_controller.reward -= 50.0
 	GameEvents.emit_player_damaged()
 	$HitRandomStreamPlayer.play_random()
 

@@ -1,5 +1,9 @@
 extends AIController2D
 
+const TILE_SIZE = 16
+const WIDTH = 55 * TILE_SIZE
+const HEIGHT = 38* TILE_SIZE
+
 var move_action: Vector2 = Vector2.ZERO
 var click_action
 
@@ -42,6 +46,7 @@ var upgrade_str_to_id = {"sword":0,
 
 func _ready():
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	GameEvents.experience_vial_collected.connect(on_experience_vial_collected)
 	upgrade_manager.selectable_upgrades_picked.connect(on_selectable_upgrades_picked)
 	for i in range(24):
 		current_upgrades.append(0)
@@ -53,12 +58,19 @@ func get_obs() -> Dictionary:
 	# get the players position and velocity in the paddle's frame of reference
 	var player_pos = to_local(_player.global_position)
 	var player_vel = to_local(_player.velocity)
-	var obs = [player_pos.x, player_pos.y, player_vel.x, player_vel.y]
+	var max_vel = _player.velocity_component.max_speed
+	var obs = [player_pos.x / WIDTH, player_pos.y / HEIGHT, player_vel.x / max_vel, player_vel.y / max_vel]
 	obs.append_array(raycast_sensor.get_observation()) 
 	obs.append_array(terrain_sensor.get_observation())
 	obs.append_array(pickup_sensor.get_observation())
+	var size = current_upgrades.size()
+	for i in range(size):
+		current_upgrades[i] = current_upgrades[i] / size
 	obs.append_array(current_upgrades)
 	if len(selectable_upgrades) > 0:
+		var size_s = selectable_upgrades.size()
+		for i in range(size_s):
+			selectable_upgrades[i] = selectable_upgrades[i] / size
 		obs.append_array(selectable_upgrades)
 	
 	return {"obs":obs}
@@ -90,6 +102,10 @@ func on_ability_upgrade_added(upgrade, _current_upgrades):
 	current_upgrades[upgrade_str_to_id[upgrade.id]] += 1
 	selectable_upgrades = [-1, -1, -1]
 	reward += 10
+
+
+func on_experience_vial_collected(number):
+	reward += number
 
 
 func on_selectable_upgrades_picked(upgrades):
