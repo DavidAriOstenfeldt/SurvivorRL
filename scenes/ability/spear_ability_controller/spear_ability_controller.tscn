@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh7k0b5j0acyt"]
+
+[ext_resource type="Script" path="res://scenes/ability/spear_ability_controller/spear_ability_controller.gd" id="1_47whx"]
+[ext_resource type="PackedScene" uid="uid://bxnykmi1ver2y" path="res://scenes/ability/spear_ability/spear_ability.tscn" id="2_khy1e"]
+
+[node name="SpearAbilityController" type="Node"]
+script = ExtResource("1_47whx")
+spear_ability = ExtResource("2_khy1e")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

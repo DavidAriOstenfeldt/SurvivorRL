@@ -1,0 +1,200 @@
+[gd_scene load_steps=14 format=3 uid="uid://dlb037nwhso7b"]
+
+[ext_resource type="Script" path="res://scenes/ability/anvil_ability/anvil_ability.gd" id="1_cjdp4"]
+[ext_resource type="Texture2D" uid="uid://c7cwax6lbctfo" path="res://scenes/ability/anvil_ability/anvil.png" id="1_y454a"]
+[ext_resource type="PackedScene" uid="uid://drnt7k86wkpba" path="res://scenes/component/hitbox_component.tscn" id="2_fiqqs"]
+[ext_resource type="Texture2D" uid="uid://dadachjvaup8" path="res://assets/vfx_circle.png" id="4_k6d1h"]
+
+[sub_resource type="Animation" id="Animation_ihkmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_p71u3"]
+resource_name = "default"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.35),
+"transitions": PackedFloat32Array(1.8025, 1, 1.7411, 1),
+"update": 0,
+"values": [Vector2(0, -96), Vector2(0, 0), Vector2(0, -6), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luo28"]
+_data = {
+"RESET": SubResource("Animation_ihkmg"),
+"default": SubResource("Animation_p71u3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lmwuk"]
+radius = 32.0
+
+[sub_resource type="Gradient" id="Gradient_pyb0f"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.608108, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_konum"]
+gradient = SubResource("Gradient_pyb0f")
+
+[sub_resource type="Curve" id="Curve_5h1pd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.735178, 0.745454), -0.745946, -0.745946, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bghk8"]
+curve = SubResource("Curve_5h1pd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n5y03"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 1600.0
+damping_max = 1600.0
+angle_max = 360.0
+scale_min = 0.75
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_bghk8")
+color_ramp = SubResource("GradientTexture1D_konum")
+
+[node name="anvil_ability" type="Node2D"]
+script = ExtResource("1_cjdp4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_luo28")
+}
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -7)
+texture = ExtResource("1_y454a")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_fiqqs")]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_lmwuk")
+disabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, -3)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_n5y03")
+texture = ExtResource("4_k6d1h")
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.8

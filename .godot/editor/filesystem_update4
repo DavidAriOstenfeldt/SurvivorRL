@@ -1,0 +1,10 @@
+res://scenes/manager/enemy_manager.tscn
+res://resources/theme/theme.tres
+res://resources/tileset.tres
+res://scenes/manager/enemy_manager.gd
+res://scenes/main/main.tscn
+res://scenes/ui/arena_time_ui.tscn
+res://scenes/ui/arena_time_ui.gd
+res://scenes/manager/experience_manager.gd
+res://scenes/manager/experience_manager.tscn
+res://resources/upgrades/anvil_damage.tres

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://dps6r4efd66xw"]
+
+[ext_resource type="Texture2D" uid="uid://byspwvolut5d6" path="res://scenes/ability/spear_ability/spear.png" id="1_o7ckv"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="2_2p80f"]
+
+[resource]
+script = ExtResource("2_2p80f")
+id = "spear_rate"
+max_quantity = 6
+name = "Spear Cooldown"
+value1 = 15.0
+value2 = 0.0
+description = "Reduces cooldown of Spear by {val1}%."
+icon = ExtResource("1_o7ckv")

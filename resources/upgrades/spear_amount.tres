@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://ciyunckh84qsh"]
+
+[ext_resource type="Texture2D" uid="uid://byspwvolut5d6" path="res://scenes/ability/spear_ability/spear.png" id="1_arexk"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="2_ejj3h"]
+
+[resource]
+script = ExtResource("2_ejj3h")
+id = "spear_amount"
+max_quantity = 3
+name = "Spear Amount"
+value1 = 1.0
+value2 = 0.0
+description = "Throws {val1} additional spear."
+icon = ExtResource("1_arexk")

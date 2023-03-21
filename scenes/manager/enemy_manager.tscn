@@ -1,0 +1,31 @@
+[gd_scene load_steps=12 format=3 uid="uid://ce7eaao8tpm6x"]
+
+[ext_resource type="Script" path="res://scenes/manager/enemy_manager.gd" id="1_2l1ff"]
+[ext_resource type="PackedScene" uid="uid://do1gudlbqcsav" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="2_ymf5g"]
+[ext_resource type="PackedScene" uid="uid://6ax0v2yk3aje" path="res://scenes/game_object/wizard_enemy/wizard_enemy.tscn" id="3_q2e74"]
+[ext_resource type="PackedScene" uid="uid://cjfafbtn1kqhj" path="res://scenes/game_object/bat_enemy/bat_enemy.tscn" id="4_vfo37"]
+[ext_resource type="PackedScene" uid="uid://dyge1q8j3tse6" path="res://scenes/game_object/crab_enemy/crab_enemy.tscn" id="5_6cdq0"]
+[ext_resource type="PackedScene" uid="uid://dqjd6pukymdf5" path="res://scenes/game_object/cyclops_enemy/cyclops_enemy.tscn" id="6_4q7b6"]
+[ext_resource type="PackedScene" uid="uid://dsawa01b0uy20" path="res://scenes/game_object/green_ghost_enemy/green_ghost_enemy.tscn" id="7_cf6q8"]
+[ext_resource type="PackedScene" uid="uid://cvgk0eawuumpy" path="res://scenes/game_object/brown_rat_enemy/brown_rat_enemy.tscn" id="8_vsrkx"]
+[ext_resource type="PackedScene" uid="uid://kvjycskgutay" path="res://scenes/game_object/spider_enemy/spider_enemy.tscn" id="9_3eygl"]
+[ext_resource type="PackedScene" uid="uid://dh4elndeyu1ra" path="res://scenes/game_object/grey_ghost_enemy/grey_ghost_enemy.tscn" id="10_rgy3u"]
+[ext_resource type="PackedScene" uid="uid://chdyolqa6385b" path="res://scenes/game_object/mimic_enemy/mimic_enemy.tscn" id="11_pjjhp"]
+
+[node name="EnemyManager" type="Node"]
+script = ExtResource("1_2l1ff")
+basic_enemy_scene = ExtResource("2_ymf5g")
+wizard_enemy_scene = ExtResource("3_q2e74")
+bat_enemy_scene = ExtResource("4_vfo37")
+crab_enemy_scene = ExtResource("5_6cdq0")
+cyclops_enemy_scene = ExtResource("6_4q7b6")
+green_ghost_enemy_scene = ExtResource("7_cf6q8")
+brown_rat_enemy_scene = ExtResource("8_vsrkx")
+spider_enemy_scene = ExtResource("9_3eygl")
+grey_ghost_enemy_scene = ExtResource("10_rgy3u")
+mimic_enemy_scene = ExtResource("11_pjjhp")
+mimic_spawn_chance = 0.015
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

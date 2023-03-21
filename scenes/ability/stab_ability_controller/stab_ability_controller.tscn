@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfmpifw7ukimu"]
+
+[ext_resource type="Script" path="res://scenes/ability/stab_ability_controller/stab_ability_controller.gd" id="1_46jt0"]
+[ext_resource type="PackedScene" uid="uid://b6j13q1emcalv" path="res://scenes/ability/stab_ability/stab_ability.tscn" id="2_xai3d"]
+
+[node name="StabAbilityController" type="Node"]
+script = ExtResource("1_46jt0")
+stab_ability = ExtResource("2_xai3d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="RepeatTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

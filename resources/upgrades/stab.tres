@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://b51q3vi3vrt7r"]
+
+[ext_resource type="PackedScene" uid="uid://cfmpifw7ukimu" path="res://scenes/ability/stab_ability_controller/stab_ability_controller.tscn" id="1_kn446"]
+[ext_resource type="Texture2D" uid="uid://bwy87kdullxbg" path="res://scenes/ability/stab_ability/stab.png" id="2_rb1kq"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="3_ehbs2"]
+
+[resource]
+script = ExtResource("3_ehbs2")
+ability_controller_scene = ExtResource("1_kn446")
+id = "stab"
+max_quantity = 1
+name = "Stab"
+description = "Stabs every few seconds."
+icon = ExtResource("2_rb1kq")

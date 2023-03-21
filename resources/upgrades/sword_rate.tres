@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://bys64qtuefi5b"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_4h0bf"]
+[ext_resource type="Texture2D" uid="uid://cxng5o6m2g4ym" path="res://scenes/ability/sword_ability/sword.png" id="1_qxb45"]
+
+[resource]
+script = ExtResource("1_4h0bf")
+id = "sword_rate"
+max_quantity = 5
+name = "Sword Cooldown"
+value1 = 18.0
+value2 = 0.0
+description = "Reduces cooldown of Sword by {val1}%."
+icon = ExtResource("1_qxb45")

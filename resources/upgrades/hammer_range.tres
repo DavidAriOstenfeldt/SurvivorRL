@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://c3gqvl5y7y17n"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_j5u5r"]
+[ext_resource type="Texture2D" uid="uid://tifbqr860exg" path="res://scenes/ability/hammer_ability/hammer.png" id="1_rof1y"]
+
+[resource]
+script = ExtResource("1_j5u5r")
+id = "hammer_range"
+max_quantity = 5
+name = "Hammer Range"
+value1 = 10.0
+value2 = 0.0
+description = "Increases the range of Hammer by {val1}%."
+icon = ExtResource("1_rof1y")

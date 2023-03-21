@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://tf8nxks8568i"]
+
+[ext_resource type="PackedScene" uid="uid://b41le04f6ldj4" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.tscn" id="1_enwux"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="1_s4h1f"]
+[ext_resource type="Texture2D" uid="uid://daw53nrlswnag" path="res://scenes/ability/axe_ability/axe.png" id="2_gnanu"]
+
+[resource]
+script = ExtResource("1_s4h1f")
+ability_controller_scene = ExtResource("1_enwux")
+id = "axe"
+max_quantity = 1
+name = "Axe"
+description = "Periodically sends an Axe spiraling out from your position."
+icon = ExtResource("2_gnanu")

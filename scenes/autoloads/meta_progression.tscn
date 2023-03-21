@@ -1,0 +1,12 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1pj5sp7cdtxe"]
+
+[ext_resource type="Script" path="res://scenes/autoloads/meta_progression.gd" id="1_r0iu0"]
+[ext_resource type="Resource" uid="uid://dinrv08arkv22" path="res://resources/meta_upgrades/experience_gain.tres" id="2_ouhti"]
+[ext_resource type="Resource" uid="uid://ch05hky4n035p" path="res://resources/meta_upgrades/pickup_area.tres" id="3_7wg03"]
+[ext_resource type="Resource" uid="uid://c7lh14334pul7" path="res://resources/meta_upgrades/health_regeneration.tres" id="4_2edx5"]
+[ext_resource type="Resource" uid="uid://c5myg7l8b4st5" path="res://resources/meta_upgrades/max_health.tres" id="5_ymict"]
+[ext_resource type="Resource" uid="uid://c7sxbt31rkffn" path="res://resources/meta_upgrades/speed.tres" id="6_7en8c"]
+
+[node name="MetaProgression" type="Node"]
+script = ExtResource("1_r0iu0")
+upgrades = Array[Resource("res://resources/meta_upgrades/meta_upgrade.gd")]([ExtResource("2_ouhti"), ExtResource("3_7wg03"), ExtResource("4_2edx5"), ExtResource("5_ymict"), ExtResource("6_7en8c")])

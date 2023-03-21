@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://babbn5nyuq2xk"]
+
+[ext_resource type="Texture2D" uid="uid://tifbqr860exg" path="res://scenes/ability/hammer_ability/hammer.png" id="1_jfx4e"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_p5sxr"]
+
+[resource]
+script = ExtResource("1_p5sxr")
+id = "hammer_duration"
+max_quantity = 5
+name = "Hammer Duration"
+value1 = 20.0
+value2 = 0.0
+description = "Increases the duration of Hammer by {val1}%."
+icon = ExtResource("1_jfx4e")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://q6iuiwny0yd2"]
+
+[ext_resource type="Texture2D" uid="uid://c7cwax6lbctfo" path="res://scenes/ability/anvil_ability/anvil.png" id="1_io7b3"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_l3cna"]
+
+[resource]
+script = ExtResource("1_l3cna")
+id = "anvil_damage"
+max_quantity = 0
+name = "Anvil Damage"
+value1 = 20.0
+value2 = 0.0
+description = "Increases the damage of Anvil by {val1}%."
+icon = ExtResource("1_io7b3")

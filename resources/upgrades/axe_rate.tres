@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://tx83uys8hx0q"]
+
+[ext_resource type="Texture2D" uid="uid://daw53nrlswnag" path="res://scenes/ability/axe_ability/axe.png" id="1_otog1"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_ufauf"]
+
+[resource]
+script = ExtResource("1_ufauf")
+id = "axe_rate"
+max_quantity = 5
+name = "Axe Cooldown"
+value1 = 10.0
+value2 = 0.0
+description = "Reduces the cooldown of Axe by {val1}%."
+icon = ExtResource("1_otog1")

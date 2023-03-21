@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dalklbolumbe5"]
+
+[ext_resource type="Script" path="res://scenes/component/magnet_drop_component.gd" id="1_8e5in"]
+[ext_resource type="PackedScene" uid="uid://duxrettosll8l" path="res://scenes/game_object/magnet/magnet.tscn" id="2_7pa2o"]
+
+[node name="MagnetDropComponent" type="Node"]
+script = ExtResource("1_8e5in")
+magnet_scene = ExtResource("2_7pa2o")

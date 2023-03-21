@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://i8a5l4bvjrkp"]
+
+[ext_resource type="Texture2D" uid="uid://c7cwax6lbctfo" path="res://scenes/ability/anvil_ability/anvil.png" id="1_02wkc"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_s6unw"]
+
+[resource]
+script = ExtResource("1_s6unw")
+id = "anvil_size"
+max_quantity = 4
+name = "Anvil Size"
+value1 = 25.0
+value2 = 0.0
+description = "Increases the size and area of Anvil by {val1}%."
+icon = ExtResource("1_02wkc")

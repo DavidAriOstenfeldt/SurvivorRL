@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://ch05hky4n035p"]
+
+[ext_resource type="Script" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_21rhl"]
+
+[resource]
+script = ExtResource("1_21rhl")
+id = "pickup_area"
+max_quantity = 4
+experience_cost = 500
+value1 = 25.0
+value2 = 0.0
+title = "Pickup Area"
+description = "Increases pickup area by {val1}%."

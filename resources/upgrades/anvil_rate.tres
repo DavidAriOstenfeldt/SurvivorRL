@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://c3g5mm87v6cl6"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_pei3t"]
+[ext_resource type="Texture2D" uid="uid://c7cwax6lbctfo" path="res://scenes/ability/anvil_ability/anvil.png" id="1_v5oee"]
+
+[resource]
+script = ExtResource("1_pei3t")
+id = "anvil_rate"
+max_quantity = 5
+name = "Anvil Cooldown"
+value1 = 10.0
+value2 = 0.0
+description = "Reduces the cooldown of Anvil by {val1}%."
+icon = ExtResource("1_v5oee")

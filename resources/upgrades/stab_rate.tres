@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://cr7sv3eiwetsm"]
+
+[ext_resource type="Texture2D" uid="uid://bwy87kdullxbg" path="res://scenes/ability/stab_ability/stab.png" id="1_laqg8"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="2_4nje1"]
+
+[resource]
+script = ExtResource("2_4nje1")
+id = "stab_rate"
+max_quantity = 6
+name = "Stab Cooldown"
+value1 = 15.0
+value2 = 0.0
+description = "Reduces cooldown of Stab by {val1}%."
+icon = ExtResource("1_laqg8")

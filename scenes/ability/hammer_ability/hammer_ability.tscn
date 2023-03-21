@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dklqs8htw8gwn"]
+
+[ext_resource type="Script" path="res://scenes/ability/hammer_ability/hammer_ability.gd" id="1_thqtd"]
+[ext_resource type="Texture2D" uid="uid://tifbqr860exg" path="res://scenes/ability/hammer_ability/hammer.png" id="2_ni8vy"]
+[ext_resource type="PackedScene" uid="uid://drnt7k86wkpba" path="res://scenes/component/hitbox_component.tscn" id="3_iej1n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63u13"]
+
+[node name="HammerAbility" type="Node2D"]
+script = ExtResource("1_thqtd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ni8vy")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_iej1n")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_63u13")
+
+[node name="HammerDuration" type="Timer" parent="."]
+one_shot = true

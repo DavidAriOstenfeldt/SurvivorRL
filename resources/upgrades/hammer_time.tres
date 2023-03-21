@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://cq3bg6evhlrsf"]
+
+[ext_resource type="Texture2D" uid="uid://tifbqr860exg" path="res://scenes/ability/hammer_ability/hammer.png" id="1_f4s05"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_nashx"]
+
+[resource]
+script = ExtResource("1_nashx")
+id = "hammer_time"
+max_quantity = 5
+name = "Hammer Time"
+value1 = 10.0
+value2 = 20.0
+description = "Reduces the cooldown of Hammer by {val1}%, and increases the duration by {val2}%."
+icon = ExtResource("1_f4s05")
