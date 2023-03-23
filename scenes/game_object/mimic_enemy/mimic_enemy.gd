@@ -15,6 +15,9 @@ var is_active = false
 
 var direction = Vector2.ZERO
 
+@export var id_ := 7
+
+
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)
 	mimic_player.play_random()

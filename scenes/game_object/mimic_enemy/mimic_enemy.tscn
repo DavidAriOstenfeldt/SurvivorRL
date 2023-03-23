@@ -260,7 +260,7 @@ _data = {
 "idle": SubResource("Animation_8dxpa")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkta1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxhqr"]
 resource_local_to_scene = true
 shader = ExtResource("4_fro7f")
 shader_parameter/lerp_percent = 0.0
@@ -292,7 +292,7 @@ max_health = 100.0
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("3_6apm6")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_fkta1")
+hit_flash_material = SubResource("ShaderMaterial_mxhqr")
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_f5j8n")]
 drop_percent = 1.0

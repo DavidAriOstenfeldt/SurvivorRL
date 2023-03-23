@@ -5,7 +5,6 @@ extends Node2D
 
 func _ready():
 	tree_exiting.connect(on_tree_exiting)
-	# ai_controller.reward += 1
 	
 func start(text: String):
 	label.text = text

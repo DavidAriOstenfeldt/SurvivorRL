@@ -43,6 +43,8 @@ class_name RaycastSensor2D
 		debug_draw = value
 		_update()  
 
+@export var get_collider := false
+
 
 var _angles = []
 var rays := []
@@ -100,10 +102,23 @@ func get_observation() -> Array:
 
 func calculate_raycasts() -> Array:
 	var result = []
+	var collider_ids = []
 	for ray in rays:
 		ray.force_raycast_update()
 		var distance = _get_raycast_distance(ray)
 		result.append(distance)
+		
+		if get_collider:
+			var collider = ray.get_collider()
+			if collider != null:
+				var collider_hp = collider.get_node("HealthComponent")
+				collider_ids.append(float(collider_hp.current_health) / 120.)
+			else: 
+				collider_ids.append(0.)
+	
+	if get_collider:
+		result.append_array(collider_ids)
+	
 	return result
 
 func _get_raycast_distance(ray : RayCast2D) -> float : 

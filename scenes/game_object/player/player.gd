@@ -78,7 +78,6 @@ func _process(delta):
 	if move_sign != 0:
 		visuals.scale = Vector2(move_sign, 1)
 
-
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y_movement = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -100,7 +99,11 @@ func update_health_display():
 func reset():
 	ai_controller.done = true
 	ai_controller.needs_reset = true
+	for i in range(ai_controller.current_upgrades.size()):
+		ai_controller.current_upgrades[i] = 0
+	ai_controller.current_upgrades[ai_controller.upgrade_str_to_id["sword"]] += 1.
 	ai_controller.reset()
+	
 	var max_health_quantity = MetaProgression.get_upgrade_count("max_health")
 	var value = MetaProgression.get_upgrade_value("max_health")[0]
 	health_component.max_health += max_health_quantity * value
@@ -139,7 +142,8 @@ func on_damage_interval_timer_timeout():
 
 
 func on_health_decreased():
-	ai_controller.reward -= 50.0
+	ai_controller.reward -= 1
+#	print("Reward: ", ai_controller.get_reward())
 	GameEvents.emit_player_damaged()
 	$HitRandomStreamPlayer.play_random()
 
@@ -157,14 +161,17 @@ func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades:
 	elif ability_upgrade.id == "player_pickup_area":
 		pickup_area.scale = pickup_area.scale + (base_pickup_area * current_upgrades["player_pickup_area"]["quantity"] * 1)
 	
-	
 func on_arena_difficulty_increased(difficulty: int):
-	ai_controller.reward += 1.0
+	if difficulty % 12 == 0:
+		ai_controller.reward += difficulty / 12
+	
+#	print("Reward: ", ai_controller.get_reward())
 	var health_regeneration_quantity = MetaProgression.get_upgrade_count("health_regeneration")
 	var value = MetaProgression.get_upgrade_value("health_regeneration")
 	var is_interval = (difficulty % (int(value[1])/5)) == 0
 	if is_interval:
 		health_component.heal(health_regeneration_quantity * value[0])
+	
 	
 	
 	

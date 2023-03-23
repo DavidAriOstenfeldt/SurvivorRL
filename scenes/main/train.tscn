@@ -7,6 +7,6 @@
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("1_r1vl2")
-speed_up = 16
+speed_up = 8
 
 [node name="Main" parent="." instance=ExtResource("2_8y755")]

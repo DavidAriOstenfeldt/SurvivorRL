@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var collision = $CollisionShape2D
 
+@export var id_ := 1
 
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)

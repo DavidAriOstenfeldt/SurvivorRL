@@ -37,7 +37,8 @@ func reset():
 	
 # Change this as well
 func on_timer_timeout():
-	main.player.ai_controller.reward += 50
+	main.player.ai_controller.reward += 10
+#	print("Reward: ", main.player.ai_controller.get_reward())
 	main.reset()
 	MetaProgression.save_data["win_count"] += 1
 	MetaProgression.save()

@@ -1,3 +1,4 @@
+Timer
 Camera2D
 RaycastSensor2D
 Node2D
@@ -6,7 +7,6 @@ Node
 AIController2D
 AIController3D
 Label
-Timer
 AnimationPlayer
 VisibleOnScreenEnabler2D
 VisibleOnScreenNotifier2D
@@ -30,4 +30,3 @@ ColorRect
 CanvasLayer
 HSlider
 AudioStreamPlayer
-AudioStreamPlayer2D
