@@ -25,4 +25,8 @@ Args:
 --learning_rate def 0.0003 # learning rate of the training
 --show_window def True # whether or not to show the window, when using the binary
 ```
-There are more args, but they either are not implemented yet, or not relevant for this project.
+
+To test an agent
+```
+gdrl --env_path bin/SurvivorRL.exe --iterations 100000 --continue_training false --show_window True --speedup 1 --load_path path/to/model.zip
+```
