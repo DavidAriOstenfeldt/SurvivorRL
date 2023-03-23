@@ -7,10 +7,12 @@ To run training from a binary (exported) game:
 gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml
 ```
 
-To run training from the editor:
+To run training from the Godot 4 editor:
 ```
 gdrl
 ```
+and then press play in the editor.
+
 
 Hyper- and training-parameters can be modified in `ppo-hparams.yaml`.
 
