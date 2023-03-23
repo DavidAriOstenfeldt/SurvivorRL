@@ -4,17 +4,22 @@ A test implementation of reinforcement learning in Godot 4 for a custom made sur
 
 To run training from a binary (exported) game:
 ```
-gdrl --env_path bin/SurvivorRL.exe --iterations 1000000 --save_every_iterations 1000000 --show_window True --speedup 16
+gdrl --env_path bin/SurvivorRL.exe --iterations 1000000 --speedup 8
 ```
 
 To run training from the editor:
 ```
-gdrl  --iterations 1000000 --save_every_iterations 1000000
+gdrl  --iterations 1000000
+```
+
+To run a training run for 10 million iterations, saving every 500 thousand:
+```
+gdrl --env_path bin/SurvivorRL.exe --iterations 1000000 --save_every_iterations 500000 --save_path save/models --speedup 16
 ```
 
 Args:
 ```
---trainer def sb3 ["sb3", "sf", "rllib"] # currently only sb3 is working
+--trainer def sb3 ["sb3", "sf", "rllib"] # currently only sb3 is implemented
 --env_path def None # path to binary (exported)
 --speedup def 1 # speed up the physics of the env
 --iterations def 100000 # number of iterations
@@ -28,5 +33,5 @@ Args:
 
 To test an agent
 ```
-gdrl --env_path bin/SurvivorRL.exe --iterations 100000 --continue_training false --show_window True --speedup 1 --load_path path/to/model.zip
+gdrl --env_path bin/SurvivorRL.exe --iterations 100000 --continue_training false --speedup 1 --load_path path/to/model
 ```
