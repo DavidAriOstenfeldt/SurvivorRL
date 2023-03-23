@@ -14,7 +14,7 @@ gdrl  --iterations 1000000
 
 To run a training run for 10 million iterations, saving every 500 thousand:
 ```
-gdrl --env_path bin/SurvivorRL.exe --iterations 1000000 --save_every_iterations 500000 --save_path save/models --speedup 16
+gdrl --env_path bin/SurvivorRL.exe --iterations 10000000 --save_every_iterations 500000 --save_path save/models --speedup 16
 ```
 
 Args:
