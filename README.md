@@ -29,6 +29,7 @@ Args:
 --continue_training def "true" # whether to continue training or predict with the loaded model, 
 --learning_rate def 0.0003 # learning rate of the training
 --show_window def True # whether or not to show the window, when using the binary
+--use_hparams def True # use hparams in ppo-hparams.yaml True/false
 ```
 
 To test an agent
