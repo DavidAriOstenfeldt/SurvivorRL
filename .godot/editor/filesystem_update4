@@ -35,3 +35,4 @@ res://scenes/game_object/mimic_enemy/mimic_enemy.gd
 res://scenes/game_object/spider_enemy/spider_enemy.tscn
 res://scenes/game_object/spider_enemy/spider_enemy.gd
 res://scenes/game_object/wizard_enemy/wizard_enemy.tscn
+res://addons/godot_rl_agents/sync.gd

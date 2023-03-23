@@ -68,7 +68,8 @@ func get_obs() -> Dictionary:
 	var t = time_elapsed / time_to_win
 	var obs =  [player_health, t, player_pos.x / WIDTH, player_pos.y / HEIGHT, player_vel.x / max_vel, player_vel.y / max_vel]
 	obs.append_array(raycast_sensor.get_observation()) 
-	obs.append_array(terrain_sensor.get_observation())
+	var terrain_obs = terrain_sensor.get_observation()
+	obs.append_array(terrain_obs)
 	obs.append_array(pickup_sensor.get_observation())
 	
 	var size = current_upgrades.size()
@@ -87,6 +88,10 @@ func get_obs() -> Dictionary:
 		selectable_upgrades_dup = selectable_upgrades.duplicate(true)
 	
 	obs.append_array(selectable_upgrades_dup)
+	
+	var terrain_sum = terrain_obs.reduce(func(accum, number): return accum + number)
+	if terrain_sum > 0:
+		reward -= terrain_sum / 10.
 	
 	return {"obs":obs}
 
