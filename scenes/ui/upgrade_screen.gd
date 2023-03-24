@@ -9,7 +9,7 @@ signal upgrade_selected(upgrade: AbilityUpgrade)
 var ai_controller
 
 func _ready():
-	get_tree().paused = true
+	get_tree().paused = false
 
 
 func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
@@ -23,7 +23,7 @@ func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
 		card_instance.play_in(delay)
 		card_instance.id = i
 		card_instance.selected.connect(on_upgrade_selected.bind(upgrade))
-		delay += .2
+		delay += 0
 		i += 1
 
 

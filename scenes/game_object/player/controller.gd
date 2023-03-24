@@ -118,7 +118,7 @@ func set_action(action) -> void:
 	move_action.x = clamp(action["move_action"][0], -1.0, 1.0)
 	move_action.y = clamp(action["move_action"][1], -1.0, 1.0)
 	
-	if get_tree().paused:
+	if selectable_upgrades[0] != -1.:
 		click_action = int(remap(action["click_action"][0], -1, 1, 0, 2))
 
 

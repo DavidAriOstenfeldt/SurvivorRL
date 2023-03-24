@@ -1,5 +1,10 @@
-res://scenes/main/train.tscn
+res://scenes/ui/ability_upgrade_card.tscn
 res://resources/theme/theme.tres
 res://resources/tileset.tres
-res://scenes/game_object/game_camera/game_camera.gd
+res://scenes/main/train.tscn
 res://scenes/main/main.tscn
+res://scenes/manager/upgrade_manager.tscn
+res://scenes/ui/upgrade_screen.tscn
+res://scenes/ui/upgrade_screen.gd
+res://scenes/game_object/player/player.tscn
+res://scenes/game_object/player/controller.gd

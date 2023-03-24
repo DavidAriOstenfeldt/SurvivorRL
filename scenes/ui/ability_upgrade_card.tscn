@@ -215,6 +215,7 @@ streams = Array[AudioStream]([ExtResource("3_8tepg"), ExtResource("4_uexsi"), Ex
 streams = Array[AudioStream]([ExtResource("3_8tepg"), ExtResource("4_uexsi"), ExtResource("5_qxb20"), ExtResource("6_yv2ju"), ExtResource("7_etvt1"), ExtResource("8_e302n"), ExtResource("9_g6lh1"), ExtResource("10_d8kl2"), ExtResource("11_ntc61"), ExtResource("12_psbqg")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 8.0
 libraries = {
 "": SubResource("AnimationLibrary_lsjdu")
 }
