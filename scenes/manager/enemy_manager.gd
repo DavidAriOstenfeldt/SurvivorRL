@@ -19,6 +19,7 @@ const SPAWN_RADIUS = 375
 @export var arena_time_manager: Node
 
 @onready var timer = $Timer
+@onready var main = get_parent()
 
 var base_spawn_time = 0
 var enemy_table = WeightedTable.new()
@@ -33,7 +34,7 @@ func _ready():
 
 
 func get_spawn_position():
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	var player = main.get_player() as Node2D
 	if player == null:
 		return Vector2.ZERO
 	
@@ -65,13 +66,13 @@ func reset():
 func on_timer_timeout():
 	timer.start()
 	
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 	
-	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
-	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
-	if enemy_count >= 500:
+	var entities_layer = main.get_entities_layer()
+	var entity_count = entities_layer.get_child_count()
+	if entity_count >= 500:
 		return
 	
 	for i in range(enemies_to_spawn):
@@ -93,7 +94,7 @@ func on_arena_difficulty_increased(arena_difficulty: int):
 		var enemy_scene = mimic_enemy_scene
 		var enemy = enemy_scene.instantiate() as Node2D
 		
-		var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+		var entities_layer = main.get_entities_layer()
 		entities_layer.add_child(enemy)
 		enemy.global_position = get_spawn_position()
 		enemy.health_component.max_health =  enemy.health_component.max_health + arena_difficulty *2

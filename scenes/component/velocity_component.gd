@@ -4,14 +4,16 @@ extends Node
 @export var acceleration: float = 5
 
 var velocity = Vector2.ZERO
-
+@onready var main = get_parent().main
 
 func accelerate_to_player():
 	var owner_node2d = owner as Node2D
 	if owner_node2d == null:
 		return
 	
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	if main == null:
+		main = get_parent().main
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 	

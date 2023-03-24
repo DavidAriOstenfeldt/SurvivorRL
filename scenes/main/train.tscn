@@ -1,12 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgd5b7tn3r47f"]
+[gd_scene load_steps=5 format=3 uid="uid://cgd5b7tn3r47f"]
 
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="1_r1vl2"]
 [ext_resource type="PackedScene" uid="uid://3d04t5ktv7ik" path="res://scenes/main/main.tscn" id="2_8y755"]
+[ext_resource type="PackedScene" uid="uid://cnqg3hs71si02" path="res://scenes/ui/arena_time_ui.tscn" id="2_mue60"]
+[ext_resource type="PackedScene" path="res://scenes/game_object/game_camera/game_camera.tscn" id="3_a1odt"]
 
 [node name="Train" type="Node"]
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("1_r1vl2")
-speed_up = 8
+
+[node name="ArenaTimeUI" parent="." instance=ExtResource("2_mue60")]
 
 [node name="Main" parent="." instance=ExtResource("2_8y755")]
+
+[node name="Main2" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(942, 0)
+
+[node name="Main3" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(0, 680)
+
+[node name="Main4" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(944, 680)
+
+[node name="Main5" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(1882, 0)
+
+[node name="Main7" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(1882, 680)
+
+[node name="Main6" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(0, 1367)
+
+[node name="Main8" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(944, 1367)
+
+[node name="Main9" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(1882, 1367)
+
+[node name="GameCamera" parent="." instance=ExtResource("3_a1odt")]
+position = Vector2(1341, 984)
+zoom = Vector2(0.34, 0.272)
+overview_camera = true

@@ -45,11 +45,14 @@ var time_to_win: float = 600.
 
 @onready var upgrade_manager = get_parent().get_parent().get_parent().get_node("UpgradeManager")
 
+@onready var main = owner.get_parent().get_parent()
 
 func _ready():
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
-	GameEvents.experience_vial_collected.connect(on_experience_vial_collected)
-	GameEvents.enemy_killed.connect(on_enemy_killed)
+	if main == null:
+		main = owner.get_parent().get_parent()
+	main.ability_upgrade_added.connect(on_ability_upgrade_added)
+	main.experience_vial_collected.connect(on_experience_vial_collected)
+	main.enemy_killed.connect(on_enemy_killed)
 	upgrade_manager.selectable_upgrades_picked.connect(on_selectable_upgrades_picked)
 	for i in range(24):
 		current_upgrades.append(0)
@@ -57,8 +60,8 @@ func _ready():
 	current_upgrades[upgrade_str_to_id["sword"]] += 1.
 	
 	$ArenaTimer.timeout.connect(on_timer_timeout)
-		
-	
+
+
 func get_obs() -> Dictionary:
 	# get the players position and velocity in the paddle's frame of reference
 	var player_health = _player.health_component.current_health / _player.health_component.max_health
@@ -89,9 +92,10 @@ func get_obs() -> Dictionary:
 	
 	obs.append_array(selectable_upgrades_dup)
 	
+	
 	var terrain_sum = terrain_obs.reduce(func(accum, number): return accum + number)
 	if terrain_sum > 0:
-		reward -= terrain_sum / 10.
+		reward -= terrain_sum
 	
 	return {"obs":obs}
 
@@ -135,7 +139,7 @@ func on_selectable_upgrades_picked(upgrades):
 
 
 func on_timer_timeout():
-	reward += 1.
+	reward += 2.
 	time_elapsed += 1.
 	
 func on_enemy_killed():

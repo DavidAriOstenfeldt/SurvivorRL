@@ -10,6 +10,7 @@ var stabs_left = stab_amount
 
 @onready var timer = $Timer
 @onready var repeat_timer = $RepeatTimer
+@onready var main = get_parent().get_parent().main
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,18 +18,21 @@ func _ready():
 	timer.timeout.connect(on_timer_timeout)
 	timer.emit_signal("timeout")
 	repeat_timer.timeout.connect(on_repeat_timer_timeout)
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	main = get_parent().get_parent().get_parent().get_parent()
+	main.ability_upgrade_added.connect(on_ability_upgrade_added)
 
 
 func on_timer_timeout():
 	for i in range(min(stab_amount, 2)):
 		if i%2 == 0:
-			var player = get_tree().get_first_node_in_group("player") as Node2D
+			if main == null:
+				main = get_parent().get_parent().main
+			var player = main.get_player() as Node2D
 			if player == null:
 				return
 			
 			var stab_instance = stab_ability.instantiate() as StabAbility
-			var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+			var foreground_layer = main.get_foreground_layer()
 			foreground_layer.add_child(stab_instance)
 			stab_instance.hitbox_component.damage = base_damage * additional_damage_percent
 			
@@ -37,12 +41,14 @@ func on_timer_timeout():
 			
 			stabs_left -= 1
 		else:
-			var player = get_tree().get_first_node_in_group("player") as Node2D
+			if main == null:
+				main = get_parent().get_parent().main
+			var player = main.get_player() as Node2D
 			if player == null:
 				return
 			
 			var stab_instance = stab_ability.instantiate() as StabAbility
-			var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+			var foreground_layer = main.get_foreground_layer()
 			foreground_layer.add_child(stab_instance)
 			stab_instance.hitbox_component.damage = base_damage * additional_damage_percent
 			
@@ -56,12 +62,14 @@ func on_timer_timeout():
 func on_repeat_timer_timeout():
 	for i in range(min(stabs_left, 2)):
 		if i%2 == 0:
-			var player = get_tree().get_first_node_in_group("player") as Node2D
+			if main == null:
+				main = get_parent().get_parent().main
+			var player = main.get_player() as Node2D
 			if player == null:
 				return
 			
 			var stab_instance = stab_ability.instantiate() as StabAbility
-			var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+			var foreground_layer = main.get_foreground_layer()
 			foreground_layer.add_child(stab_instance)
 			stab_instance.hitbox_component.damage = base_damage * additional_damage_percent
 			
@@ -72,12 +80,14 @@ func on_repeat_timer_timeout():
 			if stabs_left == 0:
 				stabs_left = stab_amount
 		else:
-			var player = get_tree().get_first_node_in_group("player") as Node2D
+			if main == null:
+				main = get_parent().get_parent().main
+			var player = main.get_player() as Node2D
 			if player == null:
 				return
 			
 			var stab_instance = stab_ability.instantiate() as StabAbility
-			var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+			var foreground_layer = main.get_foreground_layer()
 			foreground_layer.add_child(stab_instance)
 			stab_instance.hitbox_component.damage = base_damage * additional_damage_percent
 			

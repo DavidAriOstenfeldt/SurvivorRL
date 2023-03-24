@@ -1,50 +1,39 @@
 extends CanvasLayer
 
-@export var arena_time_manager: Node
-@export var experience_manager: Node
-@export var enemy_manager: Node
-@onready var label = $%Label
-@onready var fps = %FPS
-@onready var enemy_count_label = %EnemyCount
-@onready var level = %Level
-@onready var spawn_timer = %SpawnTimer
+@onready var mains = get_tree().get_nodes_in_group("main")
+
+var arena_time_managers = []
+var labels = []
+
+@onready var container = $MarginContainer/TimeHContainer
+var theme_resource = preload("res://resources/theme/theme.tres")
 
 
 func _ready():
-	if experience_manager != null:
-		experience_manager.level_up.connect(on_level_up)
-		level.text = "Level: " + str(1)
-	
-	if !OS.has_feature("debug"):
-		fps.visible = false
-		enemy_count_label.visible = false
-		level.visible = false
-		spawn_timer.visible = false
+	for i in range(mains.size()):
+		arena_time_managers.append(mains[i].get_node("ArenaTimeManager"))
+		
+		
+		var label = Label.new()
+		label.theme_type_variation = theme_resource.get_type_variation_list("Label")[1]
+		container.add_child(label)
+		labels.append(label)
+		
+		
+		
 
 
 func _process(delta):
-	if arena_time_manager == null:
-		return
-	var time_elapsed = arena_time_manager.get_time_elapsed()
-	label.text = format_seconds_to_string(time_elapsed)
+	for i in range(arena_time_managers.size()):
+		if arena_time_managers[i] == null:
+			return
+			
+		var time_elapsed = arena_time_managers[i].get_time_elapsed()
+		labels[i].text = format_seconds_to_string(time_elapsed)
 	
-	
-	# Debug
-	if OS.has_feature("debug"):
-		fps.text = "FPS: " + str(Engine.get_frames_per_second())
-		
-		var enemy_count = get_tree().get_nodes_in_group("enemy").size()
-		enemy_count_label.text = "Enemy count: " + str(enemy_count)
-		
-		if enemy_manager != null:
-			spawn_timer.text = "Spawn timer: %.2f" %enemy_manager.timer.wait_time
 
 
 func format_seconds_to_string(seconds: float):
 	var minutes = floor(seconds / 60)
 	var remaining_seconds = seconds - (minutes * 60)
 	return str(minutes) + ":" + ("%02d" % floor(remaining_seconds))
-
-
-func on_level_up(new_level: int):
-	level.text = "Level: " + str(new_level)

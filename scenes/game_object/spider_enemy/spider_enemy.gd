@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var collision = $CollisionShape2D
+@onready var main = get_parent().get_parent()
 
 @export var id_ := 8
 
@@ -12,6 +13,8 @@ func _ready():
 
 
 func _process(delta):
+	if main == null:
+		main = get_parent().get_parent()
 	velocity_component.accelerate_to_player()
 	velocity_component.move(self)
 	

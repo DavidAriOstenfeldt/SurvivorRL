@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var vial_drop_component = $VialDropComponent
 @onready var mimic_player = $MimicPlayer
 @onready var mimic_player_timer = $MimicPlayer/MimicPlayerTimer
+@onready var main = get_parent().get_parent()
 
 var is_moving = false
 var is_active = false
@@ -27,8 +28,10 @@ func _ready():
 
 
 func _process(delta):
+	if main == null:
+		main = get_parent().get_parent()
 	if is_moving:
-		var player = get_tree().get_first_node_in_group("player") as Node2D
+		var player = main.get_player() as Node2D
 		if player == null:
 			return
 		

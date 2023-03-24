@@ -8,6 +8,8 @@ extends Node
 @export var vial_amount: int = 50
 @export var vial_scenes: Array[PackedScene]
 
+@onready var main = owner.get_parent().get_parent()
+
 
 func _ready():
 	(health_component as HealthComponent).died.connect(on_died)
@@ -29,9 +31,11 @@ func on_died():
 		if not owner is Node2D:
 			return
 		
+		if main == null:
+			main = owner.get_parent().get_parent()
 		var spawn_position = (owner as Node2D).global_position
 		var vial_instance = vial_scene.instantiate() as Node2D
-		var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+		var entities_layer = main.get_entities_layer()
 		entities_layer.add_child(vial_instance)
 		vial_instance.global_position = spawn_position
 	else:
@@ -48,8 +52,10 @@ func on_died():
 				vial_instance = vial_scenes[1].instantiate() as Node2D
 			else:
 				vial_instance = vial_scenes[0].instantiate() as Node2D
-				
-			var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+			
+			if main == null:
+				main = owner.get_parent().get_parent()
+			var entities_layer = main.get_entities_layer()
 			entities_layer.add_child(vial_instance)
 			vial_instance.global_position = spawn_position
 			var target_pos = spawn_position + Vector2.RIGHT.rotated(randf_range(0, TAU)) * randf_range(10,50)

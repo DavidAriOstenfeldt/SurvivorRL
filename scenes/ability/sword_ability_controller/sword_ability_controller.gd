@@ -9,16 +9,20 @@ var base_wait_time
 const MAX_RANGE = 150
 
 @onready var timer = $Timer
+@onready var main = get_parent().get_parent().main
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	base_wait_time = timer.wait_time
 	timer.timeout.connect(on_timer_timeout)
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	main = get_parent().get_parent().get_parent().get_parent()
+	main.ability_upgrade_added.connect(on_ability_upgrade_added)
 
 
 func on_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	if main == null:
+		main = get_parent().get_parent().main
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 	
@@ -37,7 +41,7 @@ func on_timer_timeout():
 	)
 	
 	var sword_instance = sword_ability.instantiate() as SwordAbility
-	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+	var foreground_layer = main.get_foreground_layer()
 	foreground_layer.add_child(sword_instance)
 	sword_instance.hitbox_component.damage = base_damage * additional_damage_percent
 	

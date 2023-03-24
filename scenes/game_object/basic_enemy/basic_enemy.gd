@@ -6,12 +6,16 @@ extends CharacterBody2D
 
 @export var id_ := 0
 
+@onready var main = get_parent().get_parent()
+
 
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)
 
 
 func _process(delta):
+	if main == null:
+		main = get_parent().get_parent()
 	velocity_component.accelerate_to_player()
 	velocity_component.move(self)
 	

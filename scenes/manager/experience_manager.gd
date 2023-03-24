@@ -8,9 +8,12 @@ signal level_up(new_level: int)
 var current_experience = 0
 var current_level = 1
 @export var target_experience = 1
+var main
+
 
 func _ready():
-	GameEvents.experience_vial_collected.connect(on_experience_vial_collected)
+	main = get_parent()
+	main.experience_vial_collected.connect(on_experience_vial_collected)
 
 func increment_experience(number: float):
 	current_experience = min(current_experience + number, target_experience)

@@ -52,7 +52,7 @@ func select_card():
 	await $AnimationPlayer.animation_finished
 	selected.emit()
 	
-	for other_card in get_tree().get_nodes_in_group("upgrade_card"):
+	for other_card in get_parent().get_children():
 		if other_card == self:
 			continue
 			

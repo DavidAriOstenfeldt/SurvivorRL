@@ -5,6 +5,7 @@ const BASE_DAMAGE = 15
 
 @export var anvil_ability_scene: PackedScene
 @onready var timer = $Timer
+@onready var main = get_parent().get_parent().main
 
 var base_wait_time
 var additional_size_percent = 1
@@ -14,11 +15,15 @@ func _ready():
 	base_wait_time = timer.wait_time
 	timer.timeout.connect(on_timer_timeout)
 	timer.emit_signal("timeout")
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	
+	main = get_parent().get_parent().get_parent().get_parent()
+	main.ability_upgrade_added.connect(on_ability_upgrade_added)
 
 
 func on_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	if main == null:
+		main = get_parent().get_parent().main
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 		
@@ -33,7 +38,7 @@ func on_timer_timeout():
 		spawn_position = result["position"]
 		
 	var anvil_ability = anvil_ability_scene.instantiate()
-	get_tree().get_first_node_in_group("foreground_layer").add_child(anvil_ability)
+	main.get_foreground_layer().add_child(anvil_ability)
 	anvil_ability.global_position = spawn_position
 	anvil_ability.hitbox_component.damage = BASE_DAMAGE * additional_damage_percent
 	anvil_ability.scale = Vector2.ONE * additional_size_percent

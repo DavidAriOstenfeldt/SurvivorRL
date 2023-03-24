@@ -10,16 +10,16 @@ hyperparameters:
 training_parameters:
     name: PPO
     eval: True
-    eval_freq: 25000
+    eval_freq: 100000
     eval_render: False
     show_window: True
-    speedup: 16
-    eval_speedup: 16
+    speedup: 8
+    eval_speedup: 8
     iterations: 10000000
     export: True
     save_freq: 500000
     save_path: save/models
-    load_path: _ 
+    load_path: save/models/best_model
     deterministic: False
     verbose: 0
     log: True

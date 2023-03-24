@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var health_component = $HealthComponent
 @onready var visuals = $Visuals
 @onready var collision = $CollisionShape2D
+@onready var main = get_parent().get_parent()
 
 var is_moving = false
 
@@ -12,6 +13,8 @@ func _ready():
 
 
 func _process(delta):
+	if main == null:
+		main = get_parent().get_parent()
 	if is_moving:
 		velocity_component.accelerate_to_player()
 	else:

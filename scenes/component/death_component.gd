@@ -3,6 +3,8 @@ extends Node2D
 @export var health_component: HealthComponent
 @export var sprite: Sprite2D
 
+@onready var main = owner.get_parent().get_parent()
+
 func _ready():
 	$GPUParticles2D.texture = sprite.texture
 	health_component.died.connect(on_died)
@@ -11,13 +13,16 @@ func _ready():
 func on_died():
 	if owner == null || not owner is Node2D:
 		return
-		
+	
+	if main == null:
+		main = owner.get_parent().get_parent()
+	
 	if owner.is_in_group("enemy"):
-		GameEvents.emit_enemy_killed()
+		main.emit_enemy_killed()
 		
 	var spawn_position = owner.global_position
 	
-	var entities = get_tree().get_first_node_in_group("entities_layer")
+	var entities = main.get_entities_layer()
 	get_parent().remove_child(self)
 	entities.add_child(self)
 	

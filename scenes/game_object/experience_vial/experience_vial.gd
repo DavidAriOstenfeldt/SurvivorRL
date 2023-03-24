@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var sprite = $Sprite2D
+@onready var main = get_parent().get_parent()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +13,9 @@ func _ready():
 		
 
 func tween_collect(percent: float, start_position: Vector2):
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	if main == null:
+		main = get_parent().get_parent()
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 	
@@ -24,13 +27,13 @@ func tween_collect(percent: float, start_position: Vector2):
 
 
 func collect():
-	GameEvents.emit_experience_vial_collected(exp_amount)
+	main.emit_experience_vial_collected(exp_amount)
 	queue_free()
 
 
 func performance_collect(amount: float):
 	if randf() < amount:
-		GameEvents.emit_experience_vial_collected(exp_amount)
+		main.emit_experience_vial_collected(exp_amount)
 		queue_free()
 
 
@@ -56,7 +59,9 @@ func spawn_animation(target_position: Vector2):
 
 
 func tween_spawn(percent: float, start_position: Vector2, target_position: Vector2):
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	if main == null:
+		main = get_parent().get_parent()
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 	

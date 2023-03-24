@@ -2,6 +2,7 @@ extends Node
 
 @export var hammer_ability_scene: PackedScene
 @onready var timer = $Timer
+@onready var main = get_parent().get_parent().main
 
 
 var base_damage = 5
@@ -18,15 +19,18 @@ func _ready():
 	base_wait_time = timer.wait_time
 	timer.timeout.connect(on_timer_timeout)
 	timer.emit_signal("timeout")
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	main = get_parent().get_parent().get_parent().get_parent()
+	main.ability_upgrade_added.connect(on_ability_upgrade_added)
 	
 
 func on_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	if main == null:
+		main = get_parent().get_parent().main
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 	
-	var foreground = get_tree().get_first_node_in_group("foreground_layer")
+	var foreground = main.get_foreground_layer()
 	if foreground == null:
 		return
 	

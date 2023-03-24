@@ -1,5 +1,7 @@
 extends Node
 
+@onready var main = get_parent()
+
 @export var experience_manager: Node
 @export var upgrade_screen_scene: PackedScene
 
@@ -62,7 +64,7 @@ func _ready():
 	experience_manager.level_up.connect(on_level_up)
 	
 	# AI
-	ai_controller = %Player.get_node("AIController2D")
+	ai_controller = main.get_player().get_node("AIController2D")
 
 func apply_upgrade(upgrade: AbilityUpgrade):
 	var has_upgrade = current_upgrades.has(upgrade.id)
@@ -80,7 +82,7 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 			upgrade_pool.remove_item(upgrade)
 	
 	update_upgrade_pool(upgrade)
-	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
+	main.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 
 func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
@@ -139,7 +141,7 @@ func reset():
 	upgrade_pool.add_item(upgrade_player_pickup_area, 5)
 
 
-
+# TODO: FIX THIS TO WORK WITH MULTIPLE AGENTS
 func on_level_up(current_level: int):
 	var upgrade_screen_instance = upgrade_screen_scene.instantiate()
 	upgrade_screen_instance.ai_controller = ai_controller

@@ -15,6 +15,7 @@ class_name Player
 # AI
 @onready var ai_controller = $AIController2D
 @onready var start_position = global_position
+@onready var main = get_parent().get_parent()
 var start_ability = preload("res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn")
 
 
@@ -36,7 +37,10 @@ func _ready():
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_decreased.connect(on_health_decreased)
 	health_component.health_changed.connect(on_health_changed)
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	
+	if main == null:
+		main = get_parent().get_parent()
+	main.ability_upgrade_added.connect(on_ability_upgrade_added)
 	
 	
 	var max_health_quantity = MetaProgression.get_upgrade_count("max_health")
@@ -51,6 +55,7 @@ func _ready():
 	var speed_quantity = MetaProgression.get_upgrade_count("speed")
 	value = MetaProgression.get_upgrade_value("speed")[0]/100.
 	velocity_component.max_speed = velocity_component.max_speed + (base_speed * speed_quantity * value)
+	velocity_component.main = main
 	
 	update_health_display()
 
@@ -144,7 +149,7 @@ func on_damage_interval_timer_timeout():
 func on_health_decreased():
 	ai_controller.reward -= 1
 #	print("Reward: ", ai_controller.get_reward())
-	GameEvents.emit_player_damaged()
+	main.emit_player_damaged()
 	$HitRandomStreamPlayer.play_random()
 
 
