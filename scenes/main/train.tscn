@@ -39,6 +39,11 @@ position = Vector2(944, 1367)
 position = Vector2(1882, 1367)
 
 [node name="GameCamera" parent="." instance=ExtResource("3_a1odt")]
+process_mode = 3
 position = Vector2(1341, 984)
 zoom = Vector2(0.34, 0.272)
+limit_left = -500
+limit_top = -500
+limit_right = 3500
+limit_bottom = 2700
 overview_camera = true

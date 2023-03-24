@@ -7,7 +7,8 @@ extends Camera2D
 @export var edge = true
 @export var wheel = true
 @export var camera_speed = 1600
-@export var camera_margin = Vector2(1200, 800)
+@export var camera_margin = Vector2(400, 200)
+var camera_margin_adjusted = camera_margin
 
 const ZOOM_SPEED = 0.25
 
@@ -32,16 +33,17 @@ var __keys = [false, false, false, false]
 var initial_position
 
 var focused = true
+var mouse_in = true
 
 func _ready():
 	if overview_camera:
 		set_drag_horizontal_enabled(false)
 		set_drag_vertical_enabled(false)
 	
-	original_zoom = get_zoom() * 0.5
+	original_zoom = get_zoom()
 	camera_zoom = original_zoom
-	max_zoom_out = original_zoom
-	max_zoom_in = max_zoom_out * 8
+	max_zoom_out = original_zoom * 0.35
+	max_zoom_in = max_zoom_out * 12
 	initial_position = global_position
 
 
@@ -68,22 +70,25 @@ func _process(delta):
 			if __keys[3]:
 				camera_movement.y += camera_speed * delta
 		
-		if edge:
+		if edge and mouse_in:
 			var rec = get_viewport().get_visible_rect()
-			var v = get_local_mouse_position() + rec.size/2
-			if rec.size.x - v.x <= camera_margin.x:
+			var v = get_local_mouse_position() + (rec.size/2)
+			camera_margin_adjusted = camera_margin / camera_zoom
+			if camera_zoom.x > 0.8:
+				camera_margin_adjusted = camera_margin / (Vector2(0.8, 0.8))
+			if rec.size.x - v.x <= camera_margin_adjusted.x:
 				camera_movement.x += camera_speed * delta
-			if v.x <= camera_margin.x:
+			if v.x <= camera_margin_adjusted.x:
 				camera_movement.x -= camera_speed * delta
-			if rec.size.y - v.y <= camera_margin.y:
+			if rec.size.y - v.y <= camera_margin_adjusted.y:
 				camera_movement.y += camera_speed * delta
-			if v.y <= camera_margin.y:
+			if v.y <= camera_margin_adjusted.y:
 				camera_movement.y -= camera_speed * delta
 			
 		if drag and __rmbk:
-			camera_movement = (_prev_mouse_pos - get_local_mouse_position()) * 2
+			camera_movement = (_prev_mouse_pos - get_local_mouse_position()) * 4
 			
-		target_position += camera_movement * get_zoom()
+		target_position += camera_movement
 			
 	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * smoothing_factor))
 	
@@ -120,6 +125,7 @@ func _unhandled_input(event):
 		if event is InputEventKey:
 			if event.is_action_pressed("reset_camera"):
 				target_position = initial_position
+				set_zoom(original_zoom)
 			
 			# Control by keyboard handled by InpuMap.
 			if event.is_action_pressed("ui_left"):
@@ -141,9 +147,9 @@ func _unhandled_input(event):
 
 func _notification(what):
 	if what == NOTIFICATION_WM_MOUSE_ENTER:
-		focused = true
+		mouse_in = true
 	elif what == NOTIFICATION_WM_MOUSE_EXIT:
-		focused = false
+		mouse_in = false
 	
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
 		focused = true
