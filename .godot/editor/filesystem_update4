@@ -1,10 +1,5 @@
-res://scenes/ui/ability_upgrade_card.tscn
+res://scenes/game_object/player/player.tscn
 res://resources/theme/theme.tres
 res://resources/tileset.tres
-res://scenes/main/train.tscn
-res://scenes/main/main.tscn
-res://scenes/manager/upgrade_manager.tscn
-res://scenes/ui/upgrade_screen.tscn
-res://scenes/ui/upgrade_screen.gd
-res://scenes/game_object/player/player.tscn
-res://scenes/game_object/player/controller.gd
+res://scenes/game_object/player/player.gd
+res://scenes/component/velocity_component.gd

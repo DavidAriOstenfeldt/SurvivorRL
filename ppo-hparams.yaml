@@ -12,7 +12,7 @@ training_parameters:
     eval: True
     eval_freq: 100000
     eval_render: False
-    show_window: False
+    show_window: True
     speedup: 8
     eval_speedup: 8
     iterations: 10000000

@@ -5,12 +5,15 @@ class_name Player
 
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent
+@onready var base_health = health_component.max_health
 @onready var health_bar = $HealthBar
 @onready var abilities = $Abilities
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var pickup_area = $PickupArea2D
+@onready var base_area = pickup_area.size
+
 
 # AI
 @onready var ai_controller = $AIController2D
@@ -45,16 +48,16 @@ func _ready():
 	
 	var max_health_quantity = MetaProgression.get_upgrade_count("max_health")
 	var value = MetaProgression.get_upgrade_value("max_health")[0]
-	health_component.max_health += max_health_quantity * value
+	health_component.max_health = base_health + max_health_quantity * value
 	health_component.current_health = health_component.max_health
 	
 	var pickup_area_quantity = MetaProgression.get_upgrade_count("pickup_area")
 	value = MetaProgression.get_upgrade_value("pickup_area")[0]/100.
-	pickup_area.scale = pickup_area.scale + (base_pickup_area * pickup_area_quantity * value)
+	pickup_area.scale = base_pickup_area + (base_pickup_area * pickup_area_quantity * value)
 	
 	var speed_quantity = MetaProgression.get_upgrade_count("speed")
 	value = MetaProgression.get_upgrade_value("speed")[0]/100.
-	velocity_component.max_speed = velocity_component.max_speed + (base_speed * speed_quantity * value)
+	velocity_component.max_speed = base_speed + (base_speed * speed_quantity * value)
 	velocity_component.main = main
 	
 	update_health_display()
@@ -105,22 +108,22 @@ func reset():
 	ai_controller.done = true
 	ai_controller.needs_reset = true
 	for i in range(ai_controller.current_upgrades.size()):
-		ai_controller.current_upgrades[i] = 0
+		ai_controller.current_upgrades[i] = 0.
 	ai_controller.current_upgrades[ai_controller.upgrade_str_to_id["sword"]] += 1.
 	ai_controller.reset()
 	
 	var max_health_quantity = MetaProgression.get_upgrade_count("max_health")
 	var value = MetaProgression.get_upgrade_value("max_health")[0]
-	health_component.max_health += max_health_quantity * value
+	health_component.max_health = base_health + max_health_quantity * value
 	health_component.current_health = health_component.max_health
 	
 	var pickup_area_quantity = MetaProgression.get_upgrade_count("pickup_area")
 	value = MetaProgression.get_upgrade_value("pickup_area")[0]/100.
-	pickup_area.scale = pickup_area.scale + (base_pickup_area * pickup_area_quantity * value)
+	pickup_area.scale = base_pickup_area + (base_pickup_area * pickup_area_quantity * value)
 	
 	var speed_quantity = MetaProgression.get_upgrade_count("speed")
 	value = MetaProgression.get_upgrade_value("speed")[0]/100.
-	velocity_component.max_speed = velocity_component.max_speed + (base_speed * speed_quantity * value)
+	velocity_component.max_speed = base_speed + (base_speed * speed_quantity * value)
 	
 	for child in abilities.get_children():
 		child.queue_free()
