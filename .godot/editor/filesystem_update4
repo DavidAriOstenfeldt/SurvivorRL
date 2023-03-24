@@ -3,5 +3,4 @@ res://resources/theme/theme.tres
 res://resources/tileset.tres
 res://scenes/game_object/game_camera/game_camera.gd
 res://scenes/main/main.tscn
-res://scenes/ui/arena_time_ui.gd
-res://scenes/ability/spear_ability/spear_ability.tscn
+res://logs/monitor.monitor. env.translation

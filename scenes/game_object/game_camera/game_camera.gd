@@ -31,6 +31,8 @@ var __keys = [false, false, false, false]
 
 var initial_position
 
+var focused = true
+
 func _ready():
 	if overview_camera:
 		set_drag_horizontal_enabled(false)
@@ -54,7 +56,7 @@ func _process(delta):
 		if not overview_camera:
 			acquire_target()
 			
-	if overview_camera:
+	if overview_camera and focused:
 		
 		if key and sync.connected:
 			if __keys[0]:
@@ -92,7 +94,7 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	if overview_camera:
+	if overview_camera and focused:
 		if event is InputEventMouseButton:
 			if drag and\
 				event.button_index == MOUSE_BUTTON_RIGHT:
@@ -137,8 +139,18 @@ func _unhandled_input(event):
 			if event.is_action_released("ui_down"):
 				__keys[3] = false
 
-
-
+func _notification(what):
+	if what == NOTIFICATION_WM_MOUSE_ENTER:
+		focused = true
+	elif what == NOTIFICATION_WM_MOUSE_EXIT:
+		focused = false
+	
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+		focused = true
+	elif what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		focused = false
+	
+	
 func acquire_target():
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	if player_nodes.size() > 0:

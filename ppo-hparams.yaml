@@ -17,7 +17,7 @@ training_parameters:
     eval_speedup: 8
     iterations: 10000000
     export: True
-    save_freq: 500000
+    save_freq: 250000
     save_path: save/models
     load_path: save/models/best_model
     deterministic: False
