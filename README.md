@@ -4,35 +4,20 @@ A test implementation of reinforcement learning in Godot 4 for a custom made sur
 
 To run training from a binary (exported) game:
 ```
-gdrl --env_path bin/SurvivorRL.exe --iterations 1000000 --speedup 8
+gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml
 ```
 
-To run training from the editor:
+To run training from the Godot 4 editor:
 ```
-gdrl  --iterations 1000000
+gdrl
 ```
+and then press play in the editor.
 
-To run a training run for 10 million iterations, saving every 500 thousand:
-```
-gdrl --env_path bin/SurvivorRL.exe --iterations 10000000 --save_every_iterations 500000 --save_path save/models --speedup 16
-```
 
-Args:
-```
---trainer def sb3 ["sb3", "sf", "rllib"] # currently only sb3 is implemented
---env_path def None # path to binary (exported)
---speedup def 1 # speed up the physics of the env
---iterations def 100000 # number of iterations
---save_every_iterations def 100000 # save a model every n iterations
---save_path def "_" # the path to save the model at
---load_path def "_" # the path to load the model from
---continue_training def "true" # whether to continue training or predict with the loaded model, 
---learning_rate def 0.0003 # learning rate of the training
---show_window def True # whether or not to show the window, when using the binary
---use_hparams def True # use hparams in ppo-hparams.yaml True/false
-```
+Hyper- and training-parameters can be modified in `ppo-hparams.yaml`.
 
-To test an agent
-```
-gdrl --env_path bin/SurvivorRL.exe --iterations 100000 --continue_training false --speedup 1 --load_path path/to/model
-```
+To test a stored model, adjust `ppo-hparams.yaml` values:
+
+* `deterministic: True`
+* `load_path: path/to/model`
+
