@@ -23,5 +23,5 @@ To test a stored model, adjust `ppo-hparams.yaml` values:
 
 Or run with:
 ```
-gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml --deterministic
+gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml --load_path save/models/best_model --deterministic
 ```
