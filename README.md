@@ -9,7 +9,7 @@ gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml
 
 To run training from the Godot 4 editor:
 ```
-gdrl
+gdrl --noeval
 ```
 and then press play in the editor.
 
@@ -21,3 +21,7 @@ To test a stored model, adjust `ppo-hparams.yaml` values:
 * `deterministic: True`
 * `load_path: path/to/model`
 
+Or run with:
+```
+gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml --deterministic
+```
