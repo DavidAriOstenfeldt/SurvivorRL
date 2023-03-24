@@ -3,6 +3,7 @@ extends Node
 @export_range(0, 1) var drop_percent: float = .001
 @export var health_component: Node
 @export var magnet_scene: PackedScene
+@onready var main = owner.get_parent().get_parent()
 
 
 func _ready():
@@ -27,7 +28,7 @@ func on_died():
 	
 	var spawn_position = (owner as Node2D).global_position
 	var magnet_instance = magnet_scene.instantiate() as Node2D
-	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+	var entities_layer = main.get_entities_layer()
 	entities_layer.add_child(magnet_instance)
 	magnet_instance.global_position = spawn_position + Vector2.RIGHT.rotated(randf_range(0, TAU)) * 5
 

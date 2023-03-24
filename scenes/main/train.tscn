@@ -9,6 +9,7 @@
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("1_r1vl2")
+speed_up = 8
 
 [node name="ArenaTimeUI" parent="." instance=ExtResource("2_mue60")]
 
@@ -18,19 +19,19 @@ script = ExtResource("1_r1vl2")
 position = Vector2(942, 0)
 
 [node name="Main3" parent="." instance=ExtResource("2_8y755")]
-position = Vector2(0, 680)
-
-[node name="Main4" parent="." instance=ExtResource("2_8y755")]
-position = Vector2(944, 680)
-
-[node name="Main5" parent="." instance=ExtResource("2_8y755")]
 position = Vector2(1882, 0)
 
+[node name="Main4" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(0, 680)
+
+[node name="Main5" parent="." instance=ExtResource("2_8y755")]
+position = Vector2(944, 680)
+
 [node name="Main7" parent="." instance=ExtResource("2_8y755")]
-position = Vector2(1882, 680)
+position = Vector2(0, 1367)
 
 [node name="Main6" parent="." instance=ExtResource("2_8y755")]
-position = Vector2(0, 1367)
+position = Vector2(1882, 680)
 
 [node name="Main8" parent="." instance=ExtResource("2_8y755")]
 position = Vector2(944, 1367)

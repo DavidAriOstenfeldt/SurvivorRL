@@ -5,7 +5,7 @@ var ai_controller
 
 func _ready():
 	tree_exiting.connect(on_tree_exiting)
-	ai_controller = get_parent().get_parent().get_player().ai_controller
+	# ai_controller = get_parent().get_parent().get_player().ai_controller
 	
 func start(text: String):
 	label.text = text

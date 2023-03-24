@@ -11,6 +11,8 @@ var base_rotation = Vector2.RIGHT
 var duration = 5
 var radius = 50
 
+@onready var main = get_parent().get_parent()
+
 
 func _ready():
 	timer.timeout.connect(on_timer_timeout)
@@ -27,7 +29,7 @@ func tween_method(rotations: float):
 	var current_direction = base_rotation.rotated(rotations * TAU)
 	sprite.rotation = current_direction.angle() + PI/2
 	
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 		

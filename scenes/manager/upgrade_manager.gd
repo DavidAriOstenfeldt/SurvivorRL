@@ -67,6 +67,7 @@ func _ready():
 	ai_controller = main.get_player().get_node("AIController2D")
 
 func apply_upgrade(upgrade: AbilityUpgrade):
+	print("%s: %s picked %s " % [Engine.get_process_frames(), str(main).left(5), upgrade.id])
 	var has_upgrade = current_upgrades.has(upgrade.id)
 	if !has_upgrade:
 		current_upgrades[upgrade.id] = {

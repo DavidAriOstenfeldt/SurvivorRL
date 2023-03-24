@@ -3,6 +3,7 @@ extends Node2D
 const MAX_RADIUS = 100
 
 @onready var hitbox_component = $HitboxComponent
+@onready var main = get_parent().get_parent()
 
 var base_rotation = Vector2.RIGHT
 
@@ -22,7 +23,7 @@ func tween_method(rotations: float):
 	var current_radius = percent * MAX_RADIUS
 	var current_direction = base_rotation.rotated(rotations * TAU)
 	
-	var player = get_tree().get_first_node_in_group("player") as Node2D
+	var player = main.get_player() as Node2D
 	if player == null:
 		return
 		

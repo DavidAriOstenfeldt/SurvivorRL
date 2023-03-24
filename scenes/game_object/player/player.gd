@@ -12,7 +12,6 @@ class_name Player
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var pickup_area = $PickupArea2D
-@onready var base_area = pickup_area.size
 
 
 # AI
@@ -161,6 +160,7 @@ func on_health_changed():
 	
 	
 func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades: Dictionary):
+	print("%s: %s got %s" % [Engine.get_process_frames(), str(main).left(5), ability_upgrade.id])
 	if ability_upgrade is Ability:
 		var ability = ability_upgrade as Ability
 		abilities.add_child(ability.ability_controller_scene.instantiate())
@@ -171,7 +171,7 @@ func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades:
 	
 func on_arena_difficulty_increased(difficulty: int):
 	if difficulty % 12 == 0:
-		ai_controller.reward += difficulty / 12
+		ai_controller.reward += difficulty
 	
 #	print("Reward: ", ai_controller.get_reward())
 	var health_regeneration_quantity = MetaProgression.get_upgrade_count("health_regeneration")

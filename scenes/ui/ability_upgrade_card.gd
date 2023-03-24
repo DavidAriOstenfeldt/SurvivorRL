@@ -22,6 +22,7 @@ func _process(delta):
 		return
 	
 	if ai_controller.click_action == id:
+		disabled = true
 		select_card()
 
 
@@ -47,7 +48,8 @@ func set_ability_upgrade(upgrade: AbilityUpgrade):
 
 
 func select_card():
-	disabled = true
+	for card in get_parent().get_children():
+		card.disabled = true
 	$AnimationPlayer.play("selected")
 	await $AnimationPlayer.animation_finished
 	selected.emit()
