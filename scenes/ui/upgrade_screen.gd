@@ -9,7 +9,7 @@ signal upgrade_selected(upgrade: AbilityUpgrade)
 var ai_controller
 
 func _ready():
-	print("%s: %s leveled up" % [Engine.get_process_frames(), str(get_parent().get_parent()).left(5)])
+#	print("%s: %s leveled up" % [Engine.get_process_frames(), str(get_parent().get_parent()).left(5)])
 	get_tree().paused = false
 
 

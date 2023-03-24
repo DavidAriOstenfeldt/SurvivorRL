@@ -160,7 +160,7 @@ func on_health_changed():
 	
 	
 func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	print("%s: %s got %s" % [Engine.get_process_frames(), str(main).left(5), ability_upgrade.id])
+#	print("%s: %s got %s" % [Engine.get_process_frames(), str(main).left(5), ability_upgrade.id])
 	if ability_upgrade is Ability:
 		var ability = ability_upgrade as Ability
 		abilities.add_child(ability.ability_controller_scene.instantiate())
