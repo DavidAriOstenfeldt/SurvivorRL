@@ -46,6 +46,8 @@ var time_to_win: float = 600.
 @onready var upgrade_manager = get_parent().get_parent().get_parent().get_node("UpgradeManager")
 
 @onready var main = owner.get_parent().get_parent()
+@onready var experience_manager = main.get_node("ExperienceManager")
+
 
 func _ready():
 	if main == null:
@@ -74,6 +76,8 @@ func get_obs() -> Dictionary:
 	var terrain_obs = terrain_sensor.get_observation()
 	obs.append_array(terrain_obs)
 	obs.append_array(pickup_sensor.get_observation())
+	obs.append(experience_manager.current_level / 50.)
+	obs.append(float(experience_manager.current_experience)/float(experience_manager.target_experience))
 	
 	var size = current_upgrades.size()
 	var current_upgrades_dup = current_upgrades.duplicate(true)
@@ -95,7 +99,7 @@ func get_obs() -> Dictionary:
 	
 	var terrain_sum = terrain_obs.reduce(func(accum, number): return accum + number)
 	if terrain_sum > 0:
-		reward -= terrain_sum
+		reward -= terrain_sum * 0.5
 	
 	return {"obs":obs}
 
