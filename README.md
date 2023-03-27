@@ -1,5 +1,5 @@
 # SurvivorRL (WIP)
-A test implementation of reinforcement learning in Godot 4 for a custom made survivor game.
+A test implementation of reinforcement learning with [godot_rl_agents](https://github.com/edbeeching/godot_rl_agents) in Godot 4 for a custom made survivor game.
 
 
 ## Running
