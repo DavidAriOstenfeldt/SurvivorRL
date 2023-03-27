@@ -73,5 +73,5 @@ func on_options_closed(options_instance: Node):
 
 
 func on_quit_pressed():
-	get_tree().quit()
+	get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 

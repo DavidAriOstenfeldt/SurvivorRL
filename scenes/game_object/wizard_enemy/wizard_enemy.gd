@@ -10,6 +10,11 @@ extends Node2D
 
 var is_moving = false
 
+
+func _ready():
+	GameEvents.free_orphans.connect(on_free_orphans)
+
+
 func _physics_process(delta):
 	# Performance hack
 #	if Performance.get_monitor(Performance.TIME_FPS) < 50:
@@ -36,3 +41,7 @@ func _physics_process(delta):
 func set_is_moving(moving: bool):
 	is_moving = moving
 	
+	
+func on_free_orphans():
+	if not is_inside_tree():
+		queue_free()

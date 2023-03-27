@@ -29,6 +29,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
 		get_tree().root.set_input_as_handled()
+	
 
 
 # TODO CHANGE THIS
@@ -62,6 +63,7 @@ func reset():
 	enemy_manager.reset()
 	experience_manager.reset()
 	upgrade_manager.reset()
+	
 	
 	
 func emit_experience_vial_collected(number: float):

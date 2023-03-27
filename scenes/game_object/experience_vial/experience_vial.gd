@@ -10,7 +10,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
-		
+	GameEvents.free_orphans.connect(on_free_orphans)
+	
 
 func tween_collect(percent: float, start_position: Vector2):
 	if main == null:
@@ -43,6 +44,13 @@ func disable_collision():
 
 func enable_collision():
 	collision_shape_2d.disabled = false
+
+
+func start():
+	enable_collision()
+	rotation = 0
+	scale = Vector2.ONE
+	sprite.scale = Vector2.ONE
 
 
 func spawn_animation(target_position: Vector2):
@@ -81,4 +89,6 @@ func on_area_entered(other_area: Area2D):
 	tween.tween_callback(collect)
 	
 
-
+func on_free_orphans():
+	if not is_inside_tree():
+		queue_free()

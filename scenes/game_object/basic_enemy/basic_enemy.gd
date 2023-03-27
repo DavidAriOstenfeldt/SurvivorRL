@@ -15,6 +15,7 @@ var dir
 var frame_to_process
 
 func _ready():
+	GameEvents.free_orphans.connect(on_free_orphans)
 	dir = velocity_component.get_direction_to_player()
 	randomize()
 	frame_to_process = randi_range(20, 30)
@@ -40,3 +41,8 @@ func _physics_process(delta):
 	var move_sign = sign(velocity_component.velocity.x)
 	if move_sign != 0:
 		visuals.scale = Vector2(move_sign, 1)
+
+
+func on_free_orphans():
+	if not is_inside_tree():
+		queue_free()

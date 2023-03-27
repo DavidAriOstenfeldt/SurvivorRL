@@ -59,7 +59,7 @@ func _get_dict_json_message():
 		stream.poll()
 		if stream.get_status() != 2:
 			print("server disconnected status, closing")
-			get_tree().quit()
+			get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 			return null
 
 		OS.delay_usec(10)
@@ -202,7 +202,7 @@ func handle_message() -> bool:
 	var message = _get_dict_json_message()
 	if message["type"] == "close":
 		print("received close message, closing game")
-		get_tree().quit()
+		get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		get_tree().set_pause(false) 
 		return true
 		

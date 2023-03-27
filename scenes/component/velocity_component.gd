@@ -24,7 +24,7 @@ func get_direction_to_player():
 
 func accelerate_in_direction(direction: Vector2):
 	var desired_velocity = direction * max_speed
-	velocity = velocity.lerp(desired_velocity, 1 - exp(-acceleration * get_process_delta_time()))
+	velocity = velocity.lerp(desired_velocity, 1 - exp(-acceleration * get_physics_process_delta_time()))
 
 
 func get_avoid_direction(self_position: Vector2, area: Area2D):

@@ -34,9 +34,10 @@ func on_died():
 		if main == null:
 			main = owner.get_parent().get_parent()
 		var spawn_position = (owner as Node2D).global_position
-		var vial_instance = vial_scene.instantiate() as Node2D
+		var vial_instance = main.enemy_manager.object_pool.take_node(vial_scene.resource_path, vial_scene)
 		var entities_layer = main.get_entities_layer()
 		entities_layer.add_child(vial_instance)
+		vial_instance.start()
 		vial_instance.global_position = spawn_position
 	else:
 		if len(vial_scenes) == 0:

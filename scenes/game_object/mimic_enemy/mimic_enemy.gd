@@ -19,6 +19,7 @@ var direction = Vector2.ZERO
 
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)
+	GameEvents.free_orphans.connect(on_free_orphans)
 
 
 func _physics_process(delta):
@@ -74,3 +75,6 @@ func on_hit():
 		activate()
 		
 
+func on_free_orphans():
+	if not is_inside_tree():
+		queue_free()

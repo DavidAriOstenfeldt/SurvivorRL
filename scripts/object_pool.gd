@@ -1,4 +1,3 @@
-extends Node
 class_name ObjectPool
 
 @export var min_load_amount = 10
@@ -36,10 +35,13 @@ func clean_return_queue():
 		par.remove_child(object)
 		if object.has_node("HealthComponent"):
 			object.health_component.current_health = object.health_component.max_health
+		if object.has_node("VelocityComponent"):
+			object.velocity_component.velocity = Vector2.ZERO
 		if object.scene_file_path in object_pool:
 			object_pool[object.scene_file_path].append(object)
 		else:
 			object_pool[object.scene_file_path] = [object]
+		
 
 
 func load_object(path: String, packed_scene: PackedScene):

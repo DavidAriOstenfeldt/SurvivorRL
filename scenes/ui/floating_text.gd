@@ -4,6 +4,10 @@ extends Node2D
 var ai_controller
 
 
+func _ready():
+	GameEvents.free_orphans.connect(on_free_orphans)
+
+
 func start(text: String):
 	label.text = text
 	
@@ -30,3 +34,8 @@ func start(text: String):
 
 func return_to_pool():
 	GameEvents.object_pool.return_node(self)
+
+
+func on_free_orphans():
+	if not is_inside_tree():
+		queue_free()
