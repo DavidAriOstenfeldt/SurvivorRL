@@ -1,2 +1,3 @@
 res://scenes/game_object/player/player.tscn
 res://resources/theme/theme.tres
+res://addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd

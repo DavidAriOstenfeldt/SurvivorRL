@@ -111,7 +111,7 @@ func calculate_raycasts() -> Array:
 		if get_collider:
 			var collider = ray.get_collider()
 			if collider != null:
-				var collider_hp = collider.get_node("HealthComponent")
+				var collider_hp = collider.owner.get_node("HealthComponent")
 				collider_ids.append(float(collider_hp.current_health) / 120.)
 			else: 
 				collider_ids.append(0.)
