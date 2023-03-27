@@ -23,9 +23,9 @@ func tween_collect(percent: float, start_position: Vector2):
 	rotation = lerp_angle(rotation, target_rotation, 1 - exp(-2 * -get_process_delta_time()))
 
 func collect():
-	var player = main.get_parent() as Node2D
+	var player = main.get_player() as Node2D
 	if player != null:
-		for child in main.get_foreground_layer():
+		for child in main.get_entities_layer().get_children():
 			if child.is_in_group("experience_vial"):
 				child.on_area_entered(player.get_node("PickupArea2D"))
 		#get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "experience_vial", "on_area_entered", player.get_node("PickupArea2D"))
@@ -47,7 +47,5 @@ func on_area_entered(other_area: Area2D):
 	tween.tween_property(sprite, "scale", Vector2.ZERO, .05).set_delay(.45)
 	tween.chain()
 	tween.tween_callback(collect)
-	
-	$RandomStreamPlayer2DComponent.play_random()
 	
 

@@ -28,13 +28,13 @@ func tween_collect(percent: float, start_position: Vector2):
 
 func collect():
 	main.emit_experience_vial_collected(exp_amount)
-	queue_free()
+	main.enemy_manager.object_pool.return_node(self)
 
 
 func performance_collect(amount: float):
 	if randf() < amount:
 		main.emit_experience_vial_collected(exp_amount)
-		queue_free()
+		main.enemy_manager.object_pool.return_node(self)
 
 
 func disable_collision():
@@ -79,8 +79,6 @@ func on_area_entered(other_area: Area2D):
 	tween.tween_property(sprite, "scale", Vector2.ZERO, .05).set_delay(.45)
 	tween.chain()
 	tween.tween_callback(collect)
-	
-	$RandomStreamPlayer2DComponent.play_random()
 	
 
 

@@ -24,6 +24,9 @@ const SPAWN_RADIUS = 375
 var base_spawn_time = 0
 var enemy_table = WeightedTable.new()
 
+var object_pool = ObjectPool.new()
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +34,14 @@ func _ready():
 	base_spawn_time = timer.wait_time
 	timer.timeout.connect(on_timer_timeout)
 	arena_time_manager.arena_difficulty_increased.connect(on_arena_difficulty_increased)
+#	@warning_ignore("integer_division")
+#	enemies_to_spawn = int(500/9)
+#	on_timer_timeout()
+#	enemies_to_spawn = 1
+
+
+func _process(delta):
+	object_pool.clean_return_queue()
 
 
 func get_spawn_position():
@@ -77,7 +88,7 @@ func on_timer_timeout():
 	
 	for i in range(enemies_to_spawn):
 		var enemy_scene = enemy_table.pick_item()
-		var enemy = enemy_scene.instantiate() as Node2D
+		var enemy = object_pool.take_node(enemy_scene.resource_path, enemy_scene)
 		entities_layer.add_child(enemy)
 		enemy.global_position = get_spawn_position()
 	

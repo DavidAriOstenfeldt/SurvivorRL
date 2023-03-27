@@ -8,6 +8,11 @@ var labels = []
 @onready var container = $MarginContainer/TimeHContainer
 var theme_resource = preload("res://resources/theme/theme.tres")
 
+@onready var fps = %FPS
+@onready var enemy_count = %EnemyCount
+@onready var h_box_container = $MarginContainer/HBoxContainer
+
+
 
 func _ready():
 	for i in range(mains.size()):
@@ -18,9 +23,6 @@ func _ready():
 		label.theme_type_variation = theme_resource.get_type_variation_list("Label")[1]
 		container.add_child(label)
 		labels.append(label)
-		
-		
-		
 
 
 func _process(delta):
@@ -31,6 +33,10 @@ func _process(delta):
 		var time_elapsed = arena_time_managers[i].get_time_elapsed()
 		labels[i].text = format_seconds_to_string(time_elapsed)
 	
+	if Engine.get_process_frames() % 30:
+		fps.text = "FPS: %s" % Engine.get_frames_per_second()
+		enemy_count.text = "Enemies: %s" % get_tree().get_nodes_in_group("enemy").size()
+		
 
 
 func format_seconds_to_string(seconds: float):

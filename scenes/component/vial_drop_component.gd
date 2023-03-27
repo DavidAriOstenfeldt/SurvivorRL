@@ -49,9 +49,9 @@ func on_died():
 		var vial_instance: Node2D
 		for i in range(vial_amount):
 			if randf() > .66:
-				vial_instance = vial_scenes[1].instantiate() as Node2D
+				vial_instance = main.enemy_manager.object_pool.take_node(vial_scenes[1].resource_path, vial_scenes[1])
 			else:
-				vial_instance = vial_scenes[0].instantiate() as Node2D
+				vial_instance = main.enemy_manager.object_pool.take_node(vial_scenes[0].resource_path, vial_scenes[0])
 			
 			if main == null:
 				main = owner.get_parent().get_parent()

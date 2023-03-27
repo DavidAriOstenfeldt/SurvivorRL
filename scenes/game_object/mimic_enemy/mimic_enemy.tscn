@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://chdyolqa6385b"]
+[gd_scene load_steps=23 format=3 uid="uid://chdyolqa6385b"]
 
 [ext_resource type="Texture2D" uid="uid://b4ek82cbh43hb" path="res://scenes/game_object/mimic_enemy/art/mimic_idle.png" id="1_3wdtj"]
 [ext_resource type="PackedScene" uid="uid://b0xoghkyeg3fu" path="res://scenes/component/velocity_component.tscn" id="1_be7mp"]
@@ -11,18 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://inhkcsy0s3hu" path="res://scenes/game_object/mimic_enemy/art/mimic_activating2.png" id="4_xgi1d"]
 [ext_resource type="Texture2D" uid="uid://dh1ul1w80h075" path="res://scenes/game_object/mimic_enemy/art/mimic_active.png" id="5_pgsyl"]
 [ext_resource type="PackedScene" uid="uid://eoes8vo1fdmk" path="res://scenes/component/vial_drop_component.tscn" id="6_f5j8n"]
-[ext_resource type="PackedScene" uid="uid://cccdggom8bvr4" path="res://scenes/component/random_stream_player_2d_component.tscn" id="8_5pxg8"]
-[ext_resource type="AudioStream" uid="uid://hcice74etin2" path="res://assets/audio/footstep_carpet_000.ogg" id="9_lrjr4"]
-[ext_resource type="AudioStream" uid="uid://nhgjlu424xov" path="res://assets/audio/footstep_carpet_001.ogg" id="10_bv23b"]
-[ext_resource type="AudioStream" uid="uid://b1cj4kw2154sw" path="res://assets/audio/footstep_carpet_002.ogg" id="11_6h78s"]
 [ext_resource type="PackedScene" uid="uid://d3foc0vysxar8" path="res://scenes/game_object/experience_vial/experience_vial.tscn" id="11_t8ss8"]
 [ext_resource type="PackedScene" uid="uid://dmt2oagd5queu" path="res://scenes/game_object/experience_vial_2x/experience_vial_2x.tscn" id="12_8tsi4"]
-[ext_resource type="AudioStream" uid="uid://fkeuuiptrw1c" path="res://assets/audio/footstep_carpet_003.ogg" id="12_b0gbk"]
-[ext_resource type="AudioStream" uid="uid://duisaxxc6veq2" path="res://assets/audio/footstep_carpet_004.ogg" id="13_yj3l8"]
 [ext_resource type="PackedScene" uid="uid://b85cdq58hqrqy" path="res://scenes/component/hurtbox_component.tscn" id="14_iohy6"]
-[ext_resource type="PackedScene" uid="uid://b3cbt67628cl2" path="res://scenes/component/random_stream_player_component.tscn" id="20_avutr"]
-[ext_resource type="AudioStream" uid="uid://bvu88oskolra7" path="res://assets/audio/handleCoins.ogg" id="20_snvbc"]
-[ext_resource type="AudioStream" uid="uid://kgr2c3sbf3d5" path="res://assets/audio/handleCoins2.ogg" id="21_uioq4"]
 
 [sub_resource type="Animation" id="Animation_fp31a"]
 length = 0.001
@@ -260,7 +251,7 @@ _data = {
 "idle": SubResource("Animation_8dxpa")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxhqr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdw85"]
 resource_local_to_scene = true
 shader = ExtResource("4_fro7f")
 shader_parameter/lerp_percent = 0.0
@@ -292,7 +283,7 @@ max_health = 100.0
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("3_6apm6")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_mxhqr")
+hit_flash_material = SubResource("ShaderMaterial_tdw85")
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_f5j8n")]
 drop_percent = 1.0
@@ -303,15 +294,6 @@ vial_scenes = Array[PackedScene]([ExtResource("11_t8ss8"), ExtResource("12_8tsi4
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("3_d0sud")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-
-[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_5pxg8")]
-streams = Array[AudioStream]([ExtResource("9_lrjr4"), ExtResource("10_bv23b"), ExtResource("11_6h78s"), ExtResource("12_b0gbk"), ExtResource("13_yj3l8")])
-
-[node name="MimicPlayer" parent="." instance=ExtResource("20_avutr")]
-volume_db = -1.0
-streams = Array[AudioStream]([ExtResource("20_snvbc"), ExtResource("21_uioq4")])
-
-[node name="MimicPlayerTimer" type="Timer" parent="MimicPlayer"]
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_iohy6")]
 visible = false

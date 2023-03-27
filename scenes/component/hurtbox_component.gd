@@ -24,11 +24,8 @@ func on_area_entered(other_area: Area2D):
 	
 	hit.emit()
 	
-	if GameEvents.floating_texts_count > GameEvents.max_floating_text_count:
-		return
-	
 	if MetaProgression.save_data["damage_numbers"]:
-		var floating_text = floating_text_scene.instantiate() as Node2D
+		var floating_text = GameEvents.object_pool.take_node(floating_text_scene.resource_path, floating_text_scene)
 		if main == null:
 			main = get_parent().get_parent().get_parent()
 		main.get_foreground_layer().add_child(floating_text)
@@ -40,6 +37,5 @@ func on_area_entered(other_area: Area2D):
 			format_string = "%0.0f"
 			
 		floating_text.start(format_string % hitbox_component.damage)
-		GameEvents.floating_texts_count += 1
 	
 	

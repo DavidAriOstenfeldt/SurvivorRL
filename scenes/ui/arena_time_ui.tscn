@@ -23,7 +23,6 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="FPS" type="Label" parent="MarginContainer/HBoxContainer"]
@@ -35,30 +34,6 @@ theme_type_variation = &"BrownOutlineLabel"
 text = "FPS"
 
 [node name="EnemyCount" type="Label" parent="MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_shadow_color = Color(0.247059, 0.14902, 0.192157, 1)
-theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 6
-text = "Enemies: "
-
-[node name="SpawnTimer" type="Label" parent="MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_shadow_color = Color(0.247059, 0.14902, 0.192157, 1)
-theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 6
-text = "Enemies: "
-
-[node name="Level" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0

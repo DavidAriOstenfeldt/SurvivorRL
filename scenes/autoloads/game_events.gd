@@ -5,9 +5,10 @@ signal ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 signal player_damaged
 signal enemy_killed
 
-var floating_texts_count: int = 0
-var max_floating_text_count: int = 50
+var object_pool = ObjectPool.new()
 
+func _process(delta):
+	object_pool.clean_return_queue()
 
 
 func emit_experience_vial_collected(number: float):

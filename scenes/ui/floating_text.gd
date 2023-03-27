@@ -3,10 +3,7 @@ extends Node2D
 @onready var label: Label = $Label
 var ai_controller
 
-func _ready():
-	tree_exiting.connect(on_tree_exiting)
-	# ai_controller = get_parent().get_parent().get_player().ai_controller
-	
+
 func start(text: String):
 	label.text = text
 	
@@ -22,7 +19,7 @@ func start(text: String):
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	tween.chain()
 	
-	tween.tween_callback(queue_free)
+	tween.tween_callback(return_to_pool)
 	
 	var scale_tween = create_tween()
 	scale_tween.tween_property(self, "scale", Vector2.ONE * 1.5, .15)\
@@ -31,5 +28,5 @@ func start(text: String):
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 
 
-func on_tree_exiting():
-	GameEvents.floating_texts_count -= 1
+func return_to_pool():
+	GameEvents.object_pool.return_node(self)

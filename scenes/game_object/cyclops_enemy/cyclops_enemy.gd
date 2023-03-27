@@ -7,16 +7,19 @@ extends CharacterBody2D
 @onready var main = get_parent().get_parent()
 
 var is_moving = false
+	
 
-func _ready():
-	$HurtboxComponent.hit.connect(on_hit)
-
-
-func _process(delta):
+func _physics_process(delta):
+	# Performance hack
+#	if Performance.get_monitor(Performance.TIME_FPS) < 50:
+#		if randi() % 2 == 0:
+#			return
+	
 	if main == null:
 		main = get_parent().get_parent()
 	if is_moving:
-		velocity_component.accelerate_to_player()
+		var dir = velocity_component.get_direction_to_player()
+		velocity_component.accelerate_in_direction(dir)
 	else:
 		velocity_component.decelerate()
 	
@@ -35,7 +38,3 @@ func disable_collision(amount: float):
 
 func set_is_moving(moving: bool):
 	is_moving = moving
-	
-
-func on_hit():
-	$HitRandomAudioPlayerComponent.play_random()

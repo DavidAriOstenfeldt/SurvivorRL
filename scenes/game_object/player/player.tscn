@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dco4wvqkly563"]
+[gd_scene load_steps=15 format=3 uid="uid://dco4wvqkly563"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_51rux"]
 [ext_resource type="Texture2D" uid="uid://c5r01kykbnnhd" path="res://scenes/game_object/player/player.png" id="1_w7kc3"]
@@ -7,12 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://rivt7p1rl50f" path="res://scenes/component/health_component.tscn" id="2_keg1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/controller.gd" id="2_xclso"]
 [ext_resource type="Script" path="res://addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd" id="3_26652"]
-[ext_resource type="PackedScene" uid="uid://cccdggom8bvr4" path="res://scenes/component/random_stream_player_2d_component.tscn" id="5_lmrsp"]
-[ext_resource type="AudioStream" uid="uid://b85f05vi7j7x8" path="res://assets/audio/impactMining_000.ogg" id="6_n6xxj"]
-[ext_resource type="AudioStream" uid="uid://crgivjm0m66y6" path="res://assets/audio/impactMining_001.ogg" id="7_oslpi"]
-[ext_resource type="AudioStream" uid="uid://iwjkg821b8db" path="res://assets/audio/impactMining_002.ogg" id="8_a2nec"]
-[ext_resource type="AudioStream" uid="uid://cgvvunmyvp3wx" path="res://assets/audio/impactMining_003.ogg" id="9_j60bx"]
-[ext_resource type="AudioStream" uid="uid://cpceknhy1yv87" path="res://assets/audio/impactMining_004.ogg" id="10_exw86"]
 
 [sub_resource type="Animation" id="Animation_4xe71"]
 length = 0.001
@@ -160,9 +154,6 @@ acceleration = 25.0
 
 [node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_gf0th")]
 
-[node name="HitRandomStreamPlayer" parent="." instance=ExtResource("5_lmrsp")]
-streams = Array[AudioStream]([ExtResource("6_n6xxj"), ExtResource("7_oslpi"), ExtResource("8_a2nec"), ExtResource("9_j60bx"), ExtResource("10_exw86")])
-
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -197,6 +188,7 @@ offset = Vector2(0, -8)
 visible = false
 collision_layer = 0
 collision_mask = 8
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
 position = Vector2(0, -7)

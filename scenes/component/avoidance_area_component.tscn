@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://yqxg1matpb5g"]
+
+[node name="AvoidanceArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 9

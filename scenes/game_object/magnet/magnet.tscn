@@ -1,12 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://duxrettosll8l"]
+[gd_scene load_steps=4 format=3 uid="uid://duxrettosll8l"]
 
 [ext_resource type="Script" path="res://scenes/game_object/magnet/magnet.gd" id="1_tmr4k"]
-[ext_resource type="PackedScene" uid="uid://cccdggom8bvr4" path="res://scenes/component/random_stream_player_2d_component.tscn" id="2_mqno5"]
-[ext_resource type="AudioStream" uid="uid://cy1dohc3fcbj" path="res://assets/audio/impactMetal_light_000.ogg" id="3_8nmvq"]
-[ext_resource type="AudioStream" uid="uid://vn1njughuva5" path="res://assets/audio/impactMetal_light_001.ogg" id="4_dja1w"]
-[ext_resource type="AudioStream" uid="uid://cm6kdhvpgbk2b" path="res://assets/audio/impactMetal_light_002.ogg" id="5_imdiu"]
-[ext_resource type="AudioStream" uid="uid://cji8min8nrjex" path="res://assets/audio/impactMetal_light_003.ogg" id="6_alu3p"]
-[ext_resource type="AudioStream" uid="uid://b81bddgui1t7n" path="res://assets/audio/impactMetal_light_004.ogg" id="7_b6dqc"]
 [ext_resource type="Texture2D" uid="uid://1tecsuc2x4nn" path="res://scenes/game_object/magnet/magnet.png" id="8_8cesi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hb8o"]
@@ -15,9 +9,6 @@ radius = 16.0
 [node name="Magnet" type="Node2D"]
 z_index = 1
 script = ExtResource("1_tmr4k")
-
-[node name="RandomStreamPlayer2DComponent" parent="." instance=ExtResource("2_mqno5")]
-streams = Array[AudioStream]([ExtResource("3_8nmvq"), ExtResource("4_dja1w"), ExtResource("5_imdiu"), ExtResource("6_alu3p"), ExtResource("7_b6dqc")])
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqjd6pukymdf5"]
+[gd_scene load_steps=19 format=3 uid="uid://dqjd6pukymdf5"]
 
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_psd10"]
 [ext_resource type="PackedScene" uid="uid://rivt7p1rl50f" path="res://scenes/component/health_component.tscn" id="2_vexdn"]
@@ -9,13 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dswih2jaab2qc" path="res://scenes/component/hit_flash_component.tscn" id="5_yy7ig"]
 [ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="6_ujmxg"]
 [ext_resource type="PackedScene" uid="uid://bv1dctyn05nvr" path="res://scenes/component/death_component.tscn" id="7_d47u6"]
-[ext_resource type="PackedScene" uid="uid://cccdggom8bvr4" path="res://scenes/component/random_stream_player_2d_component.tscn" id="8_cgmn5"]
-[ext_resource type="AudioStream" uid="uid://hcice74etin2" path="res://assets/audio/footstep_carpet_000.ogg" id="9_1xrkl"]
 [ext_resource type="PackedScene" uid="uid://b7y3e13rlluty" path="res://scenes/component/visible_on_screen_component.tscn" id="10_awtrj"]
-[ext_resource type="AudioStream" uid="uid://nhgjlu424xov" path="res://assets/audio/footstep_carpet_001.ogg" id="10_pvfca"]
-[ext_resource type="AudioStream" uid="uid://b1cj4kw2154sw" path="res://assets/audio/footstep_carpet_002.ogg" id="11_dmw2e"]
-[ext_resource type="AudioStream" uid="uid://fkeuuiptrw1c" path="res://assets/audio/footstep_carpet_003.ogg" id="12_k0xws"]
-[ext_resource type="AudioStream" uid="uid://duisaxxc6veq2" path="res://assets/audio/footstep_carpet_004.ogg" id="13_etxtn"]
 [ext_resource type="Texture2D" uid="uid://cn41t3unykbuy" path="res://scenes/game_object/cyclops_enemy/cyclops_enemy.png" id="15_bpc54"]
 [ext_resource type="PackedScene" uid="uid://b85cdq58hqrqy" path="res://scenes/component/hurtbox_component.tscn" id="15_tpixg"]
 
@@ -123,7 +117,7 @@ _data = {
 "walk": SubResource("Animation_jsoee")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0a6oe"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdte1"]
 resource_local_to_scene = true
 shader = ExtResource("6_ujmxg")
 shader_parameter/lerp_percent = 0.0
@@ -163,7 +157,7 @@ vial_scene = ExtResource("5_11axm")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_yy7ig")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_0a6oe")
+hit_flash_material = SubResource("ShaderMaterial_hdte1")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_d47u6")]
 health_component = NodePath("../HealthComponent")
@@ -172,9 +166,6 @@ sprite = NodePath("../Visuals/Sprite2D")
 [node name="VisibleOnScreenComponent" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_awtrj")]
 position = Vector2(0, -8)
 target = NodePath("../Visuals")
-
-[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_cgmn5")]
-streams = Array[AudioStream]([ExtResource("9_1xrkl"), ExtResource("10_pvfca"), ExtResource("11_dmw2e"), ExtResource("12_k0xws"), ExtResource("13_etxtn")])
 
 [node name="Visuals" type="Node2D" parent="."]
 

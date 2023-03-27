@@ -9,7 +9,6 @@
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("1_r1vl2")
-speed_up = 8
 
 [node name="ArenaTimeUI" parent="." instance=ExtResource("2_mue60")]
 

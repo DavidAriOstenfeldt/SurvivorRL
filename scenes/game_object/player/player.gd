@@ -34,8 +34,8 @@ func _ready():
 	arena_time_manager.arena_difficulty_increased.connect(on_arena_difficulty_increased)
 	base_speed = velocity_component.max_speed
 	
-	$CollisionArea2D.body_entered.connect(on_body_entered)
-	$CollisionArea2D.body_exited.connect(on_body_exited)
+	$CollisionArea2D.area_entered.connect(on_area_entered)
+	$CollisionArea2D.area_exited.connect(on_area_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_decreased.connect(on_health_decreased)
 	health_component.health_changed.connect(on_health_changed)
@@ -135,12 +135,12 @@ func reset():
 	update_health_display()
 
 
-func on_body_entered(other_body: Node2D):
+func on_area_entered(other_body: Node2D):
 	number_colliding_bodies += 1
 	check_deal_damage()
 
 
-func on_body_exited(other_body: Node2D):
+func on_area_exited(other_body: Node2D):
 	number_colliding_bodies -= 1
 
 
@@ -152,7 +152,6 @@ func on_health_decreased():
 	ai_controller.reward -= 1
 #	print("Reward: ", ai_controller.get_reward())
 	main.emit_player_damaged()
-	$HitRandomStreamPlayer.play_random()
 
 
 func on_health_changed():
@@ -176,6 +175,7 @@ func on_arena_difficulty_increased(difficulty: int):
 #	print("Reward: ", ai_controller.get_reward())
 	var health_regeneration_quantity = MetaProgression.get_upgrade_count("health_regeneration")
 	var value = MetaProgression.get_upgrade_value("health_regeneration")
+	@warning_ignore("integer_division")
 	var is_interval = (difficulty % (int(value[1])/5)) == 0
 	if is_interval:
 		health_component.heal(health_regeneration_quantity * value[0])

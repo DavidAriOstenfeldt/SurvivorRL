@@ -7,8 +7,6 @@ extends CharacterBody2D
 @onready var raycasts = $RayCasts
 @onready var direction_visualiser = $DirectionVisualiser
 @onready var vial_drop_component = $VialDropComponent
-@onready var mimic_player = $MimicPlayer
-@onready var mimic_player_timer = $MimicPlayer/MimicPlayerTimer
 @onready var main = get_parent().get_parent()
 
 var is_moving = false
@@ -21,13 +19,14 @@ var direction = Vector2.ZERO
 
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)
-	mimic_player.play_random()
-	mimic_player_timer.timeout.connect(on_mimic_player_timer_timeout)
-	mimic_player_timer.wait_time = randi_range(3,8)
-	mimic_player_timer.start()
 
 
-func _process(delta):
+func _physics_process(delta):
+	# Performance hack
+#	if Performance.get_monitor(Performance.TIME_FPS) < 50:
+#		if randi() % 2 == 0:
+#			return
+	
 	if main == null:
 		main = get_parent().get_parent()
 	if is_moving:
@@ -64,7 +63,6 @@ func set_active(active: bool):
 
 func activate():
 	animation_player.play("activate")
-	mimic_player.play_random()
 
 
 func disable_collision(amount: float):
@@ -72,14 +70,7 @@ func disable_collision(amount: float):
 
 
 func on_hit():
-	$HitRandomAudioPlayerComponent.play_random()
 	if !is_active:
 		activate()
 		
 
-func on_mimic_player_timer_timeout():
-	if !is_active:
-		mimic_player.play_random()
-		
-		mimic_player_timer.wait_time = randi_range(5, 15)
-		mimic_player_timer.start()

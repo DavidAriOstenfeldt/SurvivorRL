@@ -8,6 +8,7 @@ signal health_decreased
 @export var max_health: float = 10
 var current_health: float
 
+@onready var main = owner.get_parent().get_parent()
 
 func _ready():
 	current_health = max_health
@@ -36,4 +37,4 @@ func check_death():
 		died.emit()
 		if owner is Player:
 			return
-		owner.queue_free()
+		main.enemy_manager.object_pool.return_node(owner)
