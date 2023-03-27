@@ -54,7 +54,7 @@ func reset():
 	player.reset()
 	for child in get_entities_layer().get_children():
 		if child.is_in_group("enemy") or child.is_in_group("experience_vial"):
-			child.queue_free()
+			enemy_manager.object_pool.return_node(child)
 	arena_time_manager.timer.wait_time = arena_time_manager.time_to_win
 	arena_time_manager.timer.start()
 	experience_bar.on_experience_updated(0, 1)
