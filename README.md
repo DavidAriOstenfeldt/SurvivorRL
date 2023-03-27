@@ -2,6 +2,7 @@
 A test implementation of reinforcement learning in Godot 4 for a custom made survivor game.
 
 
+## Running
 To run training from a binary (exported) game:
 ```
 gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml
@@ -25,3 +26,10 @@ Or run with:
 ```
 gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml --load_path save/models/best_model --deterministic
 ```
+
+## Examples
+Multi-agent training:
+
+
+https://user-images.githubusercontent.com/57765588/227998221-a1014a97-f767-4eb4-b049-a9d609b4ec5c.mov
+
