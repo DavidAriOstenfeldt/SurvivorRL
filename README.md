@@ -28,8 +28,13 @@ gdrl --env_path bin/SurvivorRL.exe --config_path ppo-hparams.yaml --load_path sa
 ```
 
 ## Examples
-Multi-agent training:
+### Multi-agent training:
 
 
 https://user-images.githubusercontent.com/57765588/227998221-a1014a97-f767-4eb4-b049-a9d609b4ec5c.mov
+
+
+### Rewards and episode lengths per time step:
+
+![rewards and episode length per timestep](plotting/evaluations.png)
 
