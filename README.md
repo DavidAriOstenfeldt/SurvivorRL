@@ -45,3 +45,7 @@ An agent with heavy penalisation for staying near walls and corners (to help the
 <p align="center">
   <img src="https://user-images.githubusercontent.com/57765588/228306587-6bee4545-b43a-4b14-8b1e-a32618d3015e.gif" alt="animated" />
 </p>
+
+
+## Notes
+* Increasing the penalty for getting damaged causes the agent to run to a corner and stay there until it dies, without ever learning to run around and dodge enemies.
