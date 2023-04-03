@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccjlj4w766dr7"]
+
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="1_njubx"]
+[ext_resource type="PackedScene" uid="uid://cnqg3hs71si02" path="res://scenes/ui/arena_time_ui.tscn" id="2_0supt"]
+[ext_resource type="PackedScene" uid="uid://3d04t5ktv7ik" path="res://scenes/main/main.tscn" id="3_yoqgw"]
+[ext_resource type="PackedScene" path="res://scenes/game_object/game_camera/game_camera.tscn" id="4_w3at8"]
+
+[node name="TrainSolo" type="Node"]
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("1_njubx")
+
+[node name="ArenaTimeUI" parent="." instance=ExtResource("2_0supt")]
+
+[node name="Main" parent="." instance=ExtResource("3_yoqgw")]
+
+[node name="GameCamera" parent="." instance=ExtResource("4_w3at8")]
+process_mode = 3
+position = Vector2(1341, 984)
+limit_left = -500
+limit_top = -500
+limit_right = 3500
+limit_bottom = 2700

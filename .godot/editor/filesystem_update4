@@ -1,5 +1,8 @@
-res://scenes/game_object/player/player.tscn
+res://scenes/main/train.tscn
 res://resources/theme/theme.tres
 res://resources/tileset.tres
-res://scenes/game_object/player/controller.gd
-res://scenes/game_object/player/player.gd
+res://scenes/game_object/experience_vial/experience_vial.tscn
+res://scenes/ui/arena_time_ui.tscn
+res://scenes/main/main.tscn
+res://scenes/game_object/player/player.tscn
+res://scenes/main/train_solo.tscn

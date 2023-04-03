@@ -99,7 +99,7 @@ func get_obs() -> Dictionary:
 	
 	var terrain_sum = terrain_obs.reduce(func(accum, number): return accum + number)
 	if terrain_sum > 0:
-		reward -= terrain_sum * 0.5
+		reward -= terrain_sum * 0.2
 	
 	return {"obs":obs}
 
