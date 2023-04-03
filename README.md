@@ -38,3 +38,14 @@ https://user-images.githubusercontent.com/57765588/227998221-a1014a97-f767-4eb4-
 
 ![rewards and episode length per timestep](plotting/evaluations.png)
 
+
+### Testing a trained model
+An agent with heavy penalisation for staying near walls and corners (to help the agent learn)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/57765588/228306587-6bee4545-b43a-4b14-8b1e-a32618d3015e.gif" alt="animated" />
+</p>
+
+
+## Notes
+* Increasing the penalty for getting damaged causes the agent to run to a corner and stay there until it dies, without ever learning to run around and dodge enemies.
