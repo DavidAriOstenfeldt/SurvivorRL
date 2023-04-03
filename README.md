@@ -49,3 +49,4 @@ An agent with heavy penalisation for staying near walls and corners (to help the
 
 ## Notes
 * Increasing the penalty for getting damaged causes the agent to run to a corner and stay there until it dies, without ever learning to run around and dodge enemies.
+* Network sizes different from the default only leads to reduced learning.
