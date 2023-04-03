@@ -50,3 +50,8 @@ An agent with heavy penalisation for staying near walls and corners (to help the
 ## Notes
 * Increasing the penalty for getting damaged causes the agent to run to a corner and stay there until it dies, without ever learning to run around and dodge enemies.
 * Network sizes different from the default only leads to reduced learning.
+
+## Credits
+* Art by [Kenney](https://kenney.nl/)
+* Base game created following [Firebelleys Course](https://www.udemy.com/course/create-a-complete-2d-arena-survival-roguelike-game-in-godot-4/)
+* [Godot RL Agents](https://github.com/edbeeching/godot_rl_agents)
